@@ -26,6 +26,8 @@ stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
+stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_sd.h
+stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_sdmmc.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
@@ -33,5 +35,3 @@ stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
 stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h
-stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: ..\LOG\log.h
-stm32f205vetx_test\stm32f2xx_hal_flash_ex.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

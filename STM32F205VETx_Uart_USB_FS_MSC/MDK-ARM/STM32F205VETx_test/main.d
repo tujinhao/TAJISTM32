@@ -27,6 +27,8 @@ stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_fla
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.h
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
+stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_sd.h
+stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_sdmmc.h
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx_test\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
@@ -51,6 +53,16 @@ stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/ti
 stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+stm32f205vetx_test\main.o: ../Core/Inc/dma.h
+stm32f205vetx_test\main.o: ../FATFS/App/fatfs.h
+stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FatFs/src/ff.h
+stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FatFs/src/integer.h
+stm32f205vetx_test\main.o: ../FATFS/Target/ffconf.h
+stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h
+stm32f205vetx_test\main.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
+stm32f205vetx_test\main.o: ../FATFS/Target/user_diskio.h
+stm32f205vetx_test\main.o: ../Core/Inc/sdio.h
 stm32f205vetx_test\main.o: ../Core/Inc/spi.h
 stm32f205vetx_test\main.o: ../Core/Inc/usart.h
 stm32f205vetx_test\main.o: ../USB_DEVICE/App/usb_device.h

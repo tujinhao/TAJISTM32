@@ -254,24 +254,24 @@ int8_t STORAGE_Read_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t bl
 int8_t STORAGE_Write_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len)
 {
   /* USER CODE BEGIN 7 */
-	 uint16_t i;
-   	HAL_FLASH_Unlock();
-	EMLOG(LOG_DEBUG,"Flash 解锁");
-   	FLASH_EraseInitTypeDef flash_erase_handler;
-   	flash_erase_handler.TypeErase = FLASH_TYPEERASE_SECTORS;
+//	 uint16_t i;
+//   	HAL_FLASH_Unlock();
+//	EMLOG(LOG_DEBUG,"Flash 解锁");
+//   	FLASH_EraseInitTypeDef flash_erase_handler;
+//   	flash_erase_handler.TypeErase = FLASH_TYPEERASE_SECTORS;
 
-   	flash_erase_handler.Sector = FLASH_SECTOR_2 ;
-	flash_erase_handler.NbSectors = 2;
-	flash_erase_handler.VoltageRange = FLASH_VOLTAGE_RANGE_3;
-	uint32_t PageError = 0;
-	HAL_FLASHEx_Erase(&flash_erase_handler, &PageError);   //页擦除，擦除后才能往这个页面写入东西        
- EMLOG(LOG_DEBUG,"PageError = %d\r\n",PageError);
-//    for(i=0;i<blk_len*STORAGE_BLK_SIZ;i+=4)
-//    {
-//        HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FLASH_START_ADDR + blk_addr*STORAGE_BLK_SIZ + i , *(uint32_t *)(&buf[i]));
-//    }
-//     //开始写入 每次写入一个4字节的大小，直到写完
-	HAL_FLASH_Lock();
+//   	flash_erase_handler.Sector = FLASH_SECTOR_2 ;
+//	flash_erase_handler.NbSectors = 2;
+//	flash_erase_handler.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+//	uint32_t PageError = 0;
+//	HAL_FLASHEx_Erase(&flash_erase_handler, &PageError);   //页擦除，擦除后才能往这个页面写入东西        
+// EMLOG(LOG_DEBUG,"PageError = %d\r\n",PageError);
+////    for(i=0;i<blk_len*STORAGE_BLK_SIZ;i+=4)
+////    {
+////        HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FLASH_START_ADDR + blk_addr*STORAGE_BLK_SIZ + i , *(uint32_t *)(&buf[i]));
+////    }
+////     //开始写入 每次写入一个4字节的大小，直到写完
+//	HAL_FLASH_Lock();
 
   return (USBD_OK);
   /* USER CODE END 7 */

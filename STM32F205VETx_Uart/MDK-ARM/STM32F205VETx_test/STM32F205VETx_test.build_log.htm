@@ -21,17 +21,54 @@ Target DLL:      CMSIS_AGDI.dll V1.32.12.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
-C:\Users\hao\Desktop\MG-Y\CODE\STM32F205VETx_test\MDK-ARM\STM32F205VETx_test.uvprojx
-Project File Date:  03/03/2022
+C:\Users\hao\Desktop\F205\STM32Code\STM32F205VETx_Uart\MDK-ARM\STM32F205VETx_test.uvprojx
+Project File Date:  03/31/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F205VETx_test'
+compiling SDCard.c...
+SDCard.c(15): error:  #20: identifier "SPI_HandleTypeDef" is undefined
+  SPI_HandleTypeDef hspiflash;
+SDCard.c(18): error:  #20: identifier "SPI_HandleTypeDef" is undefined
+  extern SPI_HandleTypeDef hspi1;
+SDCard.c(31): warning:  #223-D: function "HAL_SPI_TransmitReceive" declared implicitly
+    if(HAL_SPI_TransmitReceive(&hspiflash,&d_send,&d_read,1,0xFFFFFF)!=HAL_OK)
+SDCard.c(75): warning:  #223-D: function "HAL_SPI_Transmit" declared implicitly
+  		HAL_SPI_Transmit(&hspi1,&d_send,1,1000);
+SDCard.c(78): warning:  #223-D: function "__HAL_SPI_GET_FLAG" declared implicitly
+      while(__HAL_SPI_GET_FLAG(&hspi1, SPI_FLAG_RXNE));
+SDCard.c(78): error:  #20: identifier "SPI_FLAG_RXNE" is undefined
+      while(__HAL_SPI_GET_FLAG(&hspi1, SPI_FLAG_RXNE));
+SDCard.c(203): error:  #20: identifier "SPI_MODE_MASTER" is undefined
+    hspi1.Init.Mode = SPI_MODE_MASTER;
+SDCard.c(204): error:  #20: identifier "SPI_DIRECTION_2LINES" is undefined
+    hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+SDCard.c(205): error:  #20: identifier "SPI_DATASIZE_8BIT" is undefined
+    hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+SDCard.c(206): error:  #20: identifier "SPI_POLARITY_LOW" is undefined
+    hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+SDCard.c(207): error:  #20: identifier "SPI_PHASE_1EDGE" is undefined
+    hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+SDCard.c(208): error:  #20: identifier "SPI_NSS_HARD_OUTPUT" is undefined
+    hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
+SDCard.c(212): error:  #20: identifier "SPI_BAUDRATEPRESCALER_256" is undefined
+    hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+SDCard.c(216): error:  #20: identifier "SPI_BAUDRATEPRESCALER_4" is undefined
+  		hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+SDCard.c(218): error:  #20: identifier "SPI_FIRSTBIT_MSB" is undefined
+    hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+SDCard.c(219): error:  #20: identifier "SPI_TIMODE_DISABLE" is undefined
+    hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+SDCard.c(220): error:  #20: identifier "SPI_CRCCALCULATION_DISABLE" is undefined
+    hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+SDCard.c(222): warning:  #223-D: function "HAL_SPI_Init" declared implicitly
+    if (HAL_SPI_Init(&hspi1) != HAL_OK)
+SDCard.c(926): warning:  #1-D: last line of file ends without a newline
+  /* USER CODE END 1 */
+SDCard.c: 5 warnings, 14 errors
 compiling freertos.c...
-linking...
-Program Size: Code=11372 RO-data=540 RW-data=124 ZI-data=17956  
-FromELF: creating hex file...
-"STM32F205VETx_test\STM32F205VETx_test.axf" - 0 Error(s), 0 Warning(s).
+"STM32F205VETx_test\STM32F205VETx_test.axf" - 14 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +92,8 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:03
+Target not created.
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

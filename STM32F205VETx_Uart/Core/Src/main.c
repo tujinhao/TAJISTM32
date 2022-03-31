@@ -95,7 +95,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_UART4_Init();
+  MX_UART5_Init();
+  MX_USART2_UART_Init();
+  MX_USART3_UART_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
+	
 
   /* USER CODE END 2 */
 
@@ -113,12 +119,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     }
-    BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-                            const char * const pcName,		/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-                            const configSTACK_DEPTH_TYPE usStackDepth,
-                            void * const pvParameters,
-                            UBaseType_t uxPriority,
-                            TaskHandle_t * const pxCreatedTask );
+
 
 
 

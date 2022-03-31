@@ -26,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "SDCard.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -153,11 +153,13 @@ void StartDefaultTask(void const * argument)
 void StartUartTask(void const * argument)
 {
   /* USER CODE BEGIN StartUartTask */
+	SD_Init();
   /* Infinite loop */
   for(;;)
   {
 	
 		EMLOG(LOG_INFO,"UartTask");
+		
     osDelay(1000);
   }
   /* USER CODE END StartUartTask */

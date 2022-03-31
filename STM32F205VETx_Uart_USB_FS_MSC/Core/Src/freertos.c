@@ -26,12 +26,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "fatfs.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern uint16_t Timer1, Timer2;   //fatfs_sd ³¬Ê±ÅÐ¶Ï
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -51,6 +51,9 @@
 osThreadId defaultTaskHandle;
 osThreadId UartTaskHandle;
 osThreadId SPI_SD_TaskHandle;
+osThreadId myTask04Handle;
+osThreadId myTask05Handle;
+osTimerId myTimer01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -60,25 +63,12 @@ osThreadId SPI_SD_TaskHandle;
 void StartDefaultTask(void const * argument);
 void StartUartTask(void const * argument);
 void StartSPI_SD_Task(void const * argument);
+void StartTask04(void const * argument);
+void StartTask05(void const * argument);
+void Callback01(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-
-/* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize );
-
-/* USER CODE BEGIN GET_IDLE_TASK_MEMORY */
-static StaticTask_t xIdleTaskTCBBuffer;
-static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
-
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize )
-{
-    *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-    *ppxIdleTaskStackBuffer = &xIdleStack[0];
-    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
-    /* place for user code */
-}
-/* USER CODE END GET_IDLE_TASK_MEMORY */
 
 /**
   * @brief  FreeRTOS initialization
@@ -98,12 +88,21 @@ void MX_FREERTOS_Init(void) {
     /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
 
+  /* Create the timer(s) */
+  /* definition and creation of myTimer01 */
+  osTimerDef(myTimer01, Callback01);
+  myTimer01Handle = osTimerCreate(osTimer(myTimer01), osTimerPeriodic, NULL);
+
   /* USER CODE BEGIN RTOS_TIMERS */
+	
+	
+	osTimerStart(myTimer01Handle,1);
     /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
     /* add queues, ... */
+		
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -112,12 +111,20 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of UartTask */
-  osThreadDef(UartTask, StartUartTask, osPriorityIdle, 0, 128);
+  osThreadDef(UartTask, StartUartTask, osPriorityAboveNormal, 0, 128);
   UartTaskHandle = osThreadCreate(osThread(UartTask), NULL);
 
   /* definition and creation of SPI_SD_Task */
-  osThreadDef(SPI_SD_Task, StartSPI_SD_Task, osPriorityIdle, 0, 128);
+  osThreadDef(SPI_SD_Task, StartSPI_SD_Task, osPriorityBelowNormal, 0, 128);
   SPI_SD_TaskHandle = osThreadCreate(osThread(SPI_SD_Task), NULL);
+
+  /* definition and creation of myTask04 */
+  osThreadDef(myTask04, StartTask04, osPriorityIdle, 0, 1024);
+  myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
+
+  /* definition and creation of myTask05 */
+  osThreadDef(myTask05, StartTask05, osPriorityIdle, 0, 1024);
+  myTask05Handle = osThreadCreate(osThread(myTask05), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
     /* add threads, ... */
@@ -137,9 +144,11 @@ void StartDefaultTask(void const * argument)
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
+
     /* Infinite loop */
     for(;;)
     {
+			
 			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_RESET);
 			osDelay(100);
 			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_SET);
@@ -176,16 +185,164 @@ void StartUartTask(void const * argument)
 * @param argument: Not used
 * @retval None
 */
+
+FATFS fs;
+void *p1;
+char buffer[100];
+FRESULT res2 ;
 /* USER CODE END Header_StartSPI_SD_Task */
 void StartSPI_SD_Task(void const * argument)
 {
   /* USER CODE BEGIN StartSPI_SD_Task */
+	printf("SPI_SD_Task Start\r\n");
+	
+	
+	
+
+	
+//FATFS *pfs;
+//FIL fil;
+//FRESULT fres;
+//DWORD fre_clust;
+//uint32_t totalSpace, freeSpace;
+
+  /* Infinite loop */
+  for(;;)
+  {
+		printf("SPI_SD_Task running\r\n");
+  	
+		p1 = &fs;
+		printf("fs addr = %p \r\n",p1);
+		
+		
+		
+		res2 = f_mount(&fs, "", 0x01);
+    printf("f_mount result: %02X\r\n", res2);
+  if(res2 != FR_OK)
+  {
+    printf("f_mount failed\r\n");
+    //Error_Handler();
+  }
+	/* Check freeSpace space */
+//  if(f_getfree("", &fre_clust, &pfs) != FR_OK)
+//  {
+//    printf("f_getfree failed\r\n");
+//    Error_Handler();
+//  }
+
+//  totalSpace = (uint32_t)((pfs->n_fatent - 2) * pfs->csize * 0.5);
+//  freeSpace = (uint32_t)(fre_clust * pfs->csize * 0.5);
+//  printf("total:%dKB, free:%dKB\r\n", totalSpace, freeSpace);
+
+//  /* free space is less than 1kb */
+//  if(freeSpace < 1)
+//  {
+//    printf("freeSpace not enough\r\n");
+//    Error_Handler();
+//  }
+
+//  /* Open file to write */
+//  printf("f_open first.txt\r\n");
+//  if(f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) != FR_OK)
+//  {
+//    printf("f_open failed\r\n");
+//    Error_Handler();
+//  }
+
+//  /* Writing text */
+//  f_puts("STM32 SD Card I/O Example via SPI\n", &fil);
+//  f_puts("Black Sheep Wall!!!", &fil);
+
+//  /* Close file */
+//  printf("f_close first.txt\r\n");
+//  if(f_close(&fil) != FR_OK)
+//  {
+//    printf("f_close failed\r\n");
+//    Error_Handler();
+//  }
+
+//  /* Open file to read */
+//  printf("f_open first.txt\r\n");
+//  if(f_open(&fil, "first.txt", FA_READ) != FR_OK)
+//  {
+//    printf("f_open failed\r\n");
+//    Error_Handler();
+//  }
+
+//  printf("f_gets first.txt\r\n");
+//  while(f_gets(buffer, sizeof(buffer), &fil))
+//  {
+//    /* SWV output */
+//    printf("%s", buffer);
+//    fflush(stdout);
+//  }
+//  printf("\r\ndone\r\n");
+
+//  /* Close file */
+//  printf("f_close first.txt\r\n");
+//  if(f_close(&fil) != FR_OK)
+//  {
+//    printf("f_close failed\r\n");
+//    Error_Handler();
+//  }
+
+//  /* Unmount SDCARD */
+//  printf("f_mount unmount\r\n");
+//  if(f_mount(NULL, "", 1) != FR_OK)
+//  {
+//    printf("f_mount failed\r\n");
+//    Error_Handler();
+//  }
+		
+    osDelay(800);
+  }
+  /* USER CODE END StartSPI_SD_Task */
+}
+
+/* USER CODE BEGIN Header_StartTask04 */
+/**
+* @brief Function implementing the myTask04 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask04 */
+void StartTask04(void const * argument)
+{
+  /* USER CODE BEGIN StartTask04 */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartSPI_SD_Task */
+  /* USER CODE END StartTask04 */
+}
+
+/* USER CODE BEGIN Header_StartTask05 */
+/**
+* @brief Function implementing the myTask05 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask05 */
+void StartTask05(void const * argument)
+{
+  /* USER CODE BEGIN StartTask05 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartTask05 */
+}
+
+/* Callback01 function */
+void Callback01(void const * argument)
+{
+  /* USER CODE BEGIN Callback01 */
+	Timer1--;
+	Timer2--;
+
+  /* USER CODE END Callback01 */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -47,3 +47,4 @@ stm32f205vetx_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/includ
 stm32f205vetx_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f205vetx_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f205vetx_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+stm32f205vetx_test\freertos.o: ..\MDK-ARM\SDCard.h
