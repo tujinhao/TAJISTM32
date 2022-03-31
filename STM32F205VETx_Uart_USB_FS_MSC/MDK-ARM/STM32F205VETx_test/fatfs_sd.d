@@ -27,8 +27,6 @@ stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.h
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
-stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_sd.h
-stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_sdmmc.h
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
@@ -39,6 +37,9 @@ stm32f205vetx_test\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal
 stm32f205vetx_test\fatfs_sd.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
 stm32f205vetx_test\fatfs_sd.o: ../Middlewares/Third_Party/FatFs/src/integer.h
 stm32f205vetx_test\fatfs_sd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stm32f205vetx_test\fatfs_sd.o: ../Core/Inc/main.h
+stm32f205vetx_test\fatfs_sd.o: ..\LOG\log.h
+stm32f205vetx_test\fatfs_sd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx_test\fatfs_sd.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 stm32f205vetx_test\fatfs_sd.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 stm32f205vetx_test\fatfs_sd.o: ../Core/Inc/FreeRTOSConfig.h

@@ -30,8 +30,6 @@ stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_fl
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.h
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
-stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_sd.h
-stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_sdmmc.h
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx_test\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h

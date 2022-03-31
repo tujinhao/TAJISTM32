@@ -2728,7 +2728,9 @@ FRESULT f_read (
 					fp->flag &= ~FA__DIRTY;
 				}
 #endif
+				printf("disk_read%d\r\n",disk_read(fp->fs->drv, fp->buf.d8, sect, 1));
 				if (disk_read(fp->fs->drv, fp->buf.d8, sect, 1) != RES_OK)	/* Fill sector cache */
+		
 					ABORT(fp->fs, FR_DISK_ERR);
 			}
 #endif

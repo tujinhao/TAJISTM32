@@ -20,9 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "dma.h"
 #include "fatfs.h"
-#include "sdio.h"
 #include "spi.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -93,13 +91,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_SPI1_Init();
   MX_FATFS_Init();
-  MX_SDIO_SD_Init();
   /* USER CODE BEGIN 2 */
-	
+	HAL_Delay(500);
 	EMLOG(LOG_INFO,"Init   \r\n");
 
 	
@@ -203,7 +199,7 @@ void Error_Handler(void)
     __disable_irq();
     while (1)
     {
-			EMLOG(LOG_ERROR,"ERROR");
+		//	EMLOG(LOG_ERROR,"ERROR");
     }
   /* USER CODE END Error_Handler_Debug */
 }

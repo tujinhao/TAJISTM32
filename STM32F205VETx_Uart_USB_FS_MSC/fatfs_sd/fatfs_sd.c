@@ -4,6 +4,7 @@
 
 #include "fatfs_sd.h"
 #include <stdio.h>
+#include "main.h"
 #include "cmsis_os.h"
 uint16_t Timer1, Timer2;          /* 1ms Timer Counter */
 
@@ -18,14 +19,15 @@ static uint8_t PowerFlag = 0;       /* Power flag */
 /* slave select */
 static void SELECT(void)
 {
-  HAL_GPIO_WritePin(SD_CS_PORT, SD_CS_PIN, GPIO_PIN_RESET);
-  osDelay(1);
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_RESET);
+
+	osDelay(1);
 }
 
 /* slave deselect */
 static void DESELECT(void)
 {
-  HAL_GPIO_WritePin(SD_CS_PORT, SD_CS_PIN, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
   osDelay(1);
 }
 
@@ -232,7 +234,6 @@ static BYTE SD_SendCmd(BYTE cmd, uint32_t arg)
   uint8_t n = 10;
   do {
     res = SPI_RxByte();
-		printf("res = %d",res);
   } while ((res & 0x80) && --n);
 
   return res;
@@ -301,13 +302,10 @@ DSTATUS SD_disk_initialize(BYTE drv)
           do {
             t1 = SD_SendCmd(CMD55, 0);
             t2 = SD_SendCmd(CMD41, ACMD41_SDXC_POWER);
-						printf("t1 = %d,t2 = %d \r\n",t1,t2);
-						
             if (t1 <= 1 && t2 == 0)
             {
               f1 = 0x01;
               break;
-							
             }
           } while (Timer1);
         }

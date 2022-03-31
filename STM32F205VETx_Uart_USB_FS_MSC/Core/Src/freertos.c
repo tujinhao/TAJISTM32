@@ -42,6 +42,111 @@ extern uint16_t Timer1, Timer2;   //fatfs_sd ³¬Ê±ÅÐ¶Ï
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
+FATFS fs;
+FATFS *pfs;
+FIL fil;
+FIL fil1;
+FRESULT fres;
+DWORD fre_clust;
+uint32_t totalSpace, freeSpace;
+char buffer[100];
+void SDTest()
+{
+			/* Mount SD Card */
+  FRESULT res2 = f_mount(&fs, "", 0x01);
+  printf("f_mount result: %02X\r\n", res2);
+  if(res2 != FR_OK)
+  {
+    printf("f_mount failed\r\n");
+    Error_Handler();
+  }
+  
+	printf("f_mount ok\r\n");
+  /* Check freeSpace space */
+  if(f_getfree("", &fre_clust, &pfs) != FR_OK)
+  {
+    printf("f_getfree failed\r\n");
+    Error_Handler();
+  }
+	printf("f_getfree ok\r\n");
+
+  totalSpace = (uint32_t)((pfs->n_fatent - 2) * pfs->csize * 0.5);
+  freeSpace = (uint32_t)(fre_clust * pfs->csize * 0.5);
+  printf("total:%dKB, free:%dKB\r\n", totalSpace, freeSpace);
+
+  /* free space is less than 1kb */
+  if(freeSpace < 1)
+  {
+    printf("freeSpace not enough\r\n");
+    Error_Handler();
+  }
+
+  /* Open file to write */
+  printf("f_open first.txt\r\n");
+	//res2 = f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+	//printf("f_open  return:%d\n",res2);
+	
+  if(f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) != FR_OK)
+  {
+    printf("f_open failed : %d\r\n",f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
+    Error_Handler();
+  }
+
+  /* Writing text */
+  f_puts("STM32 FreeRTOS SD Card I/O Example via SPI\n", &fil);
+  f_puts("Black Sheep Wall!!!\n", &fil);
+	f_puts("163ewrwes22", &fil);
+
+  /* Close file */
+  printf("f_close first.txt\r\n");
+	
+	
+  if(f_close(&fil) != FR_OK)
+  {
+    printf("f_close failed:%d\r\n",f_close(&fil));
+    Error_Handler();
+  }
+
+  /* Open file to read */
+  printf("f_open first.txt\r\n");
+  if(f_open(&fil, "first.txt", FA_READ) != FR_OK)
+  {
+    printf("f_open failed\r\n");
+    Error_Handler();
+  }
+
+  printf("f_gets first.txt\r\n");
+  while(f_gets(buffer, sizeof(buffer), &fil))
+  {
+    /* SWV output */
+    printf("%s", buffer);
+   // fflush(stdout);
+		osDelay(1);
+  }
+//	f_gets(buffer, sizeof(buffer), &fil);
+	printf("%s", buffer);
+	
+  printf("\r\ndone\r\n");
+
+  /* Close file */
+  printf("f_close first.txt\r\n");
+  if(f_close(&fil) != FR_OK)
+  {
+    printf("f_close failed\r\n");
+    Error_Handler();
+  }
+
+  /* Unmount SDCARD */
+  printf("f_mount unmount\r\n");
+	
+  if(f_mount(NULL, "", 1) != FR_OK)
+  {
+    printf("f_mount failed\r\n");
+    Error_Handler();
+  }
+
+
+}
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -154,7 +259,7 @@ void StartDefaultTask(void const * argument)
 			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_SET);
 
 
-        osDelay(100);
+      osDelay(100);
     }
   /* USER CODE END StartDefaultTask */
 }
@@ -186,115 +291,25 @@ void StartUartTask(void const * argument)
 * @retval None
 */
 
-FATFS fs;
-void *p1;
-char buffer[100];
-FRESULT res2 ;
+
 /* USER CODE END Header_StartSPI_SD_Task */
 void StartSPI_SD_Task(void const * argument)
 {
   /* USER CODE BEGIN StartSPI_SD_Task */
 	printf("SPI_SD_Task Start\r\n");
 	
-	
-	
 
-	
-//FATFS *pfs;
-//FIL fil;
-//FRESULT fres;
-//DWORD fre_clust;
-//uint32_t totalSpace, freeSpace;
 
   /* Infinite loop */
+	
+
+
   for(;;)
   {
-		printf("SPI_SD_Task running\r\n");
-  	
-		p1 = &fs;
-		printf("fs addr = %p \r\n",p1);
-		
-		
-		
-		res2 = f_mount(&fs, "", 0x01);
-    printf("f_mount result: %02X\r\n", res2);
-  if(res2 != FR_OK)
-  {
-    printf("f_mount failed\r\n");
-    //Error_Handler();
-  }
-	/* Check freeSpace space */
-//  if(f_getfree("", &fre_clust, &pfs) != FR_OK)
-//  {
-//    printf("f_getfree failed\r\n");
-//    Error_Handler();
-//  }
+		EMLOG(LOG_INFO,"SPI_SD_Task");
+		SDTest();
 
-//  totalSpace = (uint32_t)((pfs->n_fatent - 2) * pfs->csize * 0.5);
-//  freeSpace = (uint32_t)(fre_clust * pfs->csize * 0.5);
-//  printf("total:%dKB, free:%dKB\r\n", totalSpace, freeSpace);
-
-//  /* free space is less than 1kb */
-//  if(freeSpace < 1)
-//  {
-//    printf("freeSpace not enough\r\n");
-//    Error_Handler();
-//  }
-
-//  /* Open file to write */
-//  printf("f_open first.txt\r\n");
-//  if(f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) != FR_OK)
-//  {
-//    printf("f_open failed\r\n");
-//    Error_Handler();
-//  }
-
-//  /* Writing text */
-//  f_puts("STM32 SD Card I/O Example via SPI\n", &fil);
-//  f_puts("Black Sheep Wall!!!", &fil);
-
-//  /* Close file */
-//  printf("f_close first.txt\r\n");
-//  if(f_close(&fil) != FR_OK)
-//  {
-//    printf("f_close failed\r\n");
-//    Error_Handler();
-//  }
-
-//  /* Open file to read */
-//  printf("f_open first.txt\r\n");
-//  if(f_open(&fil, "first.txt", FA_READ) != FR_OK)
-//  {
-//    printf("f_open failed\r\n");
-//    Error_Handler();
-//  }
-
-//  printf("f_gets first.txt\r\n");
-//  while(f_gets(buffer, sizeof(buffer), &fil))
-//  {
-//    /* SWV output */
-//    printf("%s", buffer);
-//    fflush(stdout);
-//  }
-//  printf("\r\ndone\r\n");
-
-//  /* Close file */
-//  printf("f_close first.txt\r\n");
-//  if(f_close(&fil) != FR_OK)
-//  {
-//    printf("f_close failed\r\n");
-//    Error_Handler();
-//  }
-
-//  /* Unmount SDCARD */
-//  printf("f_mount unmount\r\n");
-//  if(f_mount(NULL, "", 1) != FR_OK)
-//  {
-//    printf("f_mount failed\r\n");
-//    Error_Handler();
-//  }
-		
-    osDelay(800);
+    osDelay(1000);
   }
   /* USER CODE END StartSPI_SD_Task */
 }
@@ -330,6 +345,7 @@ void StartTask05(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+		
     osDelay(1);
   }
   /* USER CODE END StartTask05 */

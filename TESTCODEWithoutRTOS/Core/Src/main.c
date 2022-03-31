@@ -49,6 +49,7 @@
 FATFS fs;
 FATFS *pfs;
 FIL fil;
+FIL fil1;
 FRESULT fres;
 DWORD fre_clust;
 uint32_t totalSpace, freeSpace;
@@ -185,7 +186,22 @@ int main(void)
     printf("f_mount failed\r\n");
     Error_Handler();
   }
+	
+	
+	f_mount(&fs, "", 0x01);
+	f_open(&fil, "test.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+  f_puts("15:18\n", &fil);
+  f_puts("Black Sheep Wall!!!", &fil);
+	f_close(&fil);
+	f_mount(NULL, "", 1);
 
+  /* Close file */
+
+	
+	
+  f_close(&fil);
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
