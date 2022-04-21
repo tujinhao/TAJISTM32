@@ -52,6 +52,8 @@ stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 stm32f205vetx\main.o: ../Core/Inc/adc.h
+stm32f205vetx\main.o: ..\Sort\sort.h
 stm32f205vetx\main.o: ../Core/Inc/dma.h
+stm32f205vetx\main.o: ../Core/Inc/tim.h
 stm32f205vetx\main.o: ../Core/Inc/usart.h
 stm32f205vetx\main.o: ../Core/Inc/gpio.h

@@ -32,4 +32,7 @@ testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_p
 testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
+testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
+testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
+testcodewithoutrtos\cc936.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h
 testcodewithoutrtos\cc936.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

@@ -58,7 +58,7 @@ void SDTest()
   if(res2 != FR_OK)
   {
     printf("f_mount failed\r\n");
-    Error_Handler();
+  
   }
   
 	printf("f_mount ok\r\n");
@@ -66,7 +66,7 @@ void SDTest()
   if(f_getfree("", &fre_clust, &pfs) != FR_OK)
   {
     printf("f_getfree failed\r\n");
-    Error_Handler();
+   
   }
 	printf("f_getfree ok\r\n");
 
@@ -78,7 +78,7 @@ void SDTest()
   if(freeSpace < 1)
   {
     printf("freeSpace not enough\r\n");
-    Error_Handler();
+
   }
 
   /* Open file to write */
@@ -89,7 +89,7 @@ void SDTest()
   if(f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) != FR_OK)
   {
     printf("f_open failed : %d\r\n",f_open(&fil, "first.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
-    Error_Handler();
+  
   }
 
   /* Writing text */
@@ -104,7 +104,7 @@ void SDTest()
   if(f_close(&fil) != FR_OK)
   {
     printf("f_close failed:%d\r\n",f_close(&fil));
-    Error_Handler();
+
   }
 
   /* Open file to read */
@@ -112,7 +112,7 @@ void SDTest()
   if(f_open(&fil, "first.txt", FA_READ) != FR_OK)
   {
     printf("f_open failed\r\n");
-    Error_Handler();
+
   }
 
   printf("f_gets first.txt\r\n");
@@ -120,8 +120,8 @@ void SDTest()
   {
     /* SWV output */
     printf("%s", buffer);
-   // fflush(stdout);
-		osDelay(1);
+    fflush(stdout);
+
   }
 //	f_gets(buffer, sizeof(buffer), &fil);
 	printf("%s", buffer);
@@ -133,7 +133,7 @@ void SDTest()
   if(f_close(&fil) != FR_OK)
   {
     printf("f_close failed\r\n");
-    Error_Handler();
+
   }
 
   /* Unmount SDCARD */
@@ -142,7 +142,7 @@ void SDTest()
   if(f_mount(NULL, "", 1) != FR_OK)
   {
     printf("f_mount failed\r\n");
-    Error_Handler();
+ 
   }
 
 
@@ -154,10 +154,10 @@ void SDTest()
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
-osThreadId UartTaskHandle;
+osThreadId UartDebugTaskHandle;
 osThreadId SPI_SD_TaskHandle;
-osThreadId myTask04Handle;
-osThreadId myTask05Handle;
+osThreadId YuyinbobaoTaskHandle;
+osThreadId Uart_4GTaskHandle;
 osTimerId myTimer01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -166,10 +166,10 @@ osTimerId myTimer01Handle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void StartUartTask(void const * argument);
+void StartDebugUartTask(void const * argument);
 void StartSPI_SD_Task(void const * argument);
-void StartTask04(void const * argument);
-void StartTask05(void const * argument);
+void StartYuyinbobaoTask(void const * argument);
+void Start4G_Task(void const * argument);
 void Callback01(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
@@ -215,21 +215,21 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-  /* definition and creation of UartTask */
-  osThreadDef(UartTask, StartUartTask, osPriorityAboveNormal, 0, 128);
-  UartTaskHandle = osThreadCreate(osThread(UartTask), NULL);
+  /* definition and creation of UartDebugTask */
+  osThreadDef(UartDebugTask, StartDebugUartTask, osPriorityAboveNormal, 0, 128);
+  UartDebugTaskHandle = osThreadCreate(osThread(UartDebugTask), NULL);
 
   /* definition and creation of SPI_SD_Task */
   osThreadDef(SPI_SD_Task, StartSPI_SD_Task, osPriorityBelowNormal, 0, 128);
   SPI_SD_TaskHandle = osThreadCreate(osThread(SPI_SD_Task), NULL);
 
-  /* definition and creation of myTask04 */
-  osThreadDef(myTask04, StartTask04, osPriorityIdle, 0, 1024);
-  myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
+  /* definition and creation of YuyinbobaoTask */
+  osThreadDef(YuyinbobaoTask, StartYuyinbobaoTask, osPriorityIdle, 0, 1024);
+  YuyinbobaoTaskHandle = osThreadCreate(osThread(YuyinbobaoTask), NULL);
 
-  /* definition and creation of myTask05 */
-  osThreadDef(myTask05, StartTask05, osPriorityIdle, 0, 1024);
-  myTask05Handle = osThreadCreate(osThread(myTask05), NULL);
+  /* definition and creation of Uart_4GTask */
+  osThreadDef(Uart_4GTask, Start4G_Task, osPriorityIdle, 0, 1024);
+  Uart_4GTaskHandle = osThreadCreate(osThread(Uart_4GTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
     /* add threads, ... */
@@ -254,9 +254,9 @@ void StartDefaultTask(void const * argument)
     for(;;)
     {
 			
-			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_RESET);
-			osDelay(100);
-			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_SET);
+//			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_RESET);
+//			osDelay(100);
+//			HAL_GPIO_WritePin(LED_t_GPIO_Port, LED_t_Pin, GPIO_PIN_SET);
 
 
       osDelay(100);
@@ -264,24 +264,22 @@ void StartDefaultTask(void const * argument)
   /* USER CODE END StartDefaultTask */
 }
 
-/* USER CODE BEGIN Header_StartUartTask */
+/* USER CODE BEGIN Header_StartDebugUartTask */
 /**
-* @brief Function implementing the UartTask thread.
+* @brief Function implementing the UartDebugTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartUartTask */
-void StartUartTask(void const * argument)
+/* USER CODE END Header_StartDebugUartTask */
+void StartDebugUartTask(void const * argument)
 {
-  /* USER CODE BEGIN StartUartTask */
+  /* USER CODE BEGIN StartDebugUartTask */
   /* Infinite loop */
   for(;;)
   {
-	
-		EMLOG(LOG_INFO,"UartTask");
-    osDelay(2000);
+    osDelay(1);
   }
-  /* USER CODE END StartUartTask */
+  /* USER CODE END StartDebugUartTask */
 }
 
 /* USER CODE BEGIN Header_StartSPI_SD_Task */
@@ -314,41 +312,40 @@ void StartSPI_SD_Task(void const * argument)
   /* USER CODE END StartSPI_SD_Task */
 }
 
-/* USER CODE BEGIN Header_StartTask04 */
+/* USER CODE BEGIN Header_StartYuyinbobaoTask */
 /**
-* @brief Function implementing the myTask04 thread.
+* @brief Function implementing the YuyinbobaoTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartTask04 */
-void StartTask04(void const * argument)
+/* USER CODE END Header_StartYuyinbobaoTask */
+void StartYuyinbobaoTask(void const * argument)
 {
-  /* USER CODE BEGIN StartTask04 */
+  /* USER CODE BEGIN StartYuyinbobaoTask */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartTask04 */
+  /* USER CODE END StartYuyinbobaoTask */
 }
 
-/* USER CODE BEGIN Header_StartTask05 */
+/* USER CODE BEGIN Header_Start4G_Task */
 /**
-* @brief Function implementing the myTask05 thread.
+* @brief Function implementing the Uart_4GTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartTask05 */
-void StartTask05(void const * argument)
+/* USER CODE END Header_Start4G_Task */
+void Start4G_Task(void const * argument)
 {
-  /* USER CODE BEGIN StartTask05 */
+  /* USER CODE BEGIN Start4G_Task */
   /* Infinite loop */
   for(;;)
   {
-		
     osDelay(1);
   }
-  /* USER CODE END StartTask05 */
+  /* USER CODE END Start4G_Task */
 }
 
 /* Callback01 function */

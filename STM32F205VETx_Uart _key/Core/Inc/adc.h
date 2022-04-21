@@ -28,12 +28,15 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "sort.h"
 /* USER CODE END Includes */
 
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
+#define ADC1_Filter_Num 50 //采样滤波点数
+
+#define ADC1_Vref 1200.0  //需要根据单片机情况调整
 
 /* USER CODE END Private defines */
 
@@ -43,19 +46,25 @@ void MX_ADC1_Init(void);
 
 typedef enum
 {
-  ADC1_CHANNEL_IN0 = 0U,
-  ADC1_CHANNEL_IN1,
-	ADC1_CHANNEL_Temp,
-	ADC1_CHANNEL_Vref,
+  ADC1_CHANNEL_IN0 = 0U,      //ADC1通道1   rank 1
+  ADC1_CHANNEL_IN1,           //rank  2
+	ADC1_CHANNEL_Temp,          //rank  3
+	ADC1_CHANNEL_Vref,          //rank  4
+	
 	ADC1_CHANNEL_CNT,         //ADC通道数量
 	
 	ADCn_CHANNEL_IN0 = 0,
 	ADCn_CHANNEL_CNT,   
 	
 }ADC_CHANNEL;
-extern uint32_t ADC1_Buf[ADC1_CHANNEL_CNT];
 
-extern uint32_t ADC1_DMA_CNT;
+
+
+
+extern uint32_t ADC1_Buf[ADC1_CHANNEL_CNT * ADC1_Filter_Num];
+extern uint32_t ADC1_In0_Buf[ADC1_Filter_Num];
+extern uint32_t ADC1_In1_Buf[ADC1_Filter_Num];
+extern uint32_t ADC1_Vref_Buf[ADC1_Filter_Num];
 
 double Get_ADC_Voltage(uint32_t *ADCBuf,ADC_CHANNEL CHANNEL);
 

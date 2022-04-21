@@ -28,3 +28,6 @@ testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm3
 testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
+testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
+testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
+testcodewithoutrtos\system_stm32f2xx.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h

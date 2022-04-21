@@ -54,4 +54,5 @@ stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/eve
 stm32f205vetx\freertos.o: ../Core/Inc/gpio.h
 stm32f205vetx\freertos.o: ../Core/Inc/usart.h
 stm32f205vetx\freertos.o: ../Core/Inc/ADC.h
+stm32f205vetx\freertos.o: ..\Sort\sort.h
 stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

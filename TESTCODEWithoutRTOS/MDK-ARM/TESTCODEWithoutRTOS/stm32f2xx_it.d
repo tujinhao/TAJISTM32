@@ -29,5 +29,8 @@ testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2x
 testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
+testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
+testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
+testcodewithoutrtos\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h
 testcodewithoutrtos\stm32f2xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 testcodewithoutrtos\stm32f2xx_it.o: ../Core/Inc/stm32f2xx_it.h

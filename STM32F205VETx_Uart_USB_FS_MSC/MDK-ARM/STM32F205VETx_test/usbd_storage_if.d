@@ -49,3 +49,6 @@ stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library
 stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
 stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Class/MSC/Inc/usbd_msc_scsi.h
+stm32f205vetx_test\usbd_storage_if.o: ..\fatfs_sd\fatfs_sd.h
+stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
+stm32f205vetx_test\usbd_storage_if.o: ../Middlewares/Third_Party/FatFs/src/integer.h

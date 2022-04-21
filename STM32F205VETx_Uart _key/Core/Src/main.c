@@ -22,6 +22,7 @@
 #include "cmsis_os.h"
 #include "adc.h"
 #include "dma.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -104,22 +105,24 @@ int main(void)
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   MX_USART2_UART_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-    HAL_ADC_Start_DMA(&hadc1,ADC1_Buf,ADC1_CHANNEL_CNT);
+    HAL_ADC_Start_DMA(&hadc1,ADC1_Buf,ADC1_CHANNEL_CNT * ADC1_Filter_Num);  //DMA 数组大小为ADC1的通道数乘以ADC1需要滤波的数据量
+    HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+//   HAL_UART_Receive_IT(&huart1,recv_buf,1);
+    HAL_UART_Receive_DMA(&huart1, UART_RX_BUF, UART_RX_LEN);  // 启动DMA接收
+    __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);              // 使能空闲中断
 
- //   HAL_UART_Receive_IT(&huart1,recv_buf,1);
-		HAL_UART_Receive_DMA(&huart1, UART_RX_BUF, UART_RX_LEN);  // 启动DMA接收
-		__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);              // 使能空闲中断
-		
-		HAL_UART_Receive_DMA(&huart2, UART_RX_BUF, UART_RX_LEN);  // 启动DMA接收
-		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);              // 使能空闲中断
-		
-		
+//		HAL_UART_Receive_DMA(&huart2, UART_RX_BUF, UART_RX_LEN);  // 启动DMA接收
+//		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);              // 使能空闲中断
+
+
     AppObjCreate();
     EMLOG(LOG_DEBUG,"初始化完成");
-		EMLOG(LOG_DEBUG,"%s",UART_RX_BUF);
-		
-		
+    EMLOG(LOG_DEBUG,"%s",UART_RX_BUF);
+
+
 
 
 

@@ -29,6 +29,9 @@ testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ha
 testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
+testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
+testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
+testcodewithoutrtos\fatfs_sd.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h
 testcodewithoutrtos\fatfs_sd.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
 testcodewithoutrtos\fatfs_sd.o: ../Middlewares/Third_Party/FatFs/src/integer.h
 testcodewithoutrtos\fatfs_sd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

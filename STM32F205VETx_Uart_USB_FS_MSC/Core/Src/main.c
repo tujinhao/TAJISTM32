@@ -94,7 +94,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_SPI1_Init();
   MX_FATFS_Init();
+  MX_USART2_UART_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+	MX_USB_DEVICE_Init();
 	HAL_Delay(500);
 	EMLOG(LOG_INFO,"Init   \r\n");
 
@@ -199,7 +202,9 @@ void Error_Handler(void)
     __disable_irq();
     while (1)
     {
-		//	EMLOG(LOG_ERROR,"ERROR");
+			
+			osDelay(100);
+			EMLOG(LOG_ERROR,"ERROR");
     }
   /* USER CODE END Error_Handler_Debug */
 }

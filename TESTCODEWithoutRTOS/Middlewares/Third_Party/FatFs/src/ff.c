@@ -2149,11 +2149,8 @@ FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
 	} else {								/* Follow path */
 		for (;;) {
 			res = create_name(dp, &path);	/* Get a segment name of the path */
-			printf("\r\n follow_path res1 = %d\r\n",res);
-			
 			if (res != FR_OK) break;
 			res = dir_find(dp);				/* Find an object with the sagment name */
-			printf("\r\n follow_path res2 = %d\r\n",res);
 			ns = dp->fn[NSFLAG];
 			if (res != FR_OK) {				/* Failed to find the object */
 				if (res == FR_NO_FILE) {	/* Object is not found */
@@ -2165,7 +2162,6 @@ FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
 						if (!(ns & NS_LAST)) res = FR_NO_PATH;	/* Adjust error code if not last segment */
 					}
 				}
-				printf("\r\n follow_path res3 = %d\r\n",res);
 				break;
 			}
 			if (ns & NS_LAST) break;			/* Last segment matched. Function completed. */
@@ -2545,7 +2541,6 @@ FRESULT f_open (
 #if !_FS_READONLY
 	mode &= FA_READ | FA_WRITE | FA_CREATE_ALWAYS | FA_OPEN_ALWAYS | FA_CREATE_NEW;
 	res = find_volume(&dj.fs, &path, (BYTE)(mode & ~FA_READ));
-	printf("\r\nf_open res1 = %d\r\n",res);
 #else
 	mode &= FA_READ;
 	res = find_volume(&dj.fs, &path, 0);
@@ -2553,18 +2548,14 @@ FRESULT f_open (
 	if (res == FR_OK) {
 		INIT_BUF(dj);
 		res = follow_path(&dj, path);	/* Follow the file path */
-		printf("\r\nf_open res2 = %d\r\n",res);
 		dir = dj.dir;
 #if !_FS_READONLY	/* R/W configuration */
 		if (res == FR_OK) {
 			if (!dir)	/* Default directory itself */
 				res = FR_INVALID_NAME;
-			
 #if _FS_LOCK
 			else
 				res = chk_lock(&dj, (mode & ~FA_READ) ? 1 : 0);
-			
-			printf("\r\nf_open res3 = %d\r\n",res);
 #endif
 		}
 		/* Create or Open a file */
@@ -2573,7 +2564,6 @@ FRESULT f_open (
 				if (res == FR_NO_FILE)			/* There is no file to open, create a new entry */
 #if _FS_LOCK
 					res = enq_lock() ? dir_register(&dj) : FR_TOO_MANY_OPEN_FILES;
-				printf("\r\nf_open res4 = %d\r\n",res);
 #else
 					res = dir_register(&dj);
 #endif

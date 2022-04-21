@@ -22,6 +22,7 @@
 #include "fatfs.h"
 #include "spi.h"
 #include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -98,6 +99,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USART1_UART_Init();
   MX_FATFS_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 	HAL_Delay(500);
 	/* Mount SD Card */
@@ -166,6 +168,7 @@ int main(void)
   while(f_gets(buffer, sizeof(buffer), &fil))
   {
     /* SWV output */
+		
     printf("%s", buffer);
     fflush(stdout);
   }
@@ -235,7 +238,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 13;
   RCC_OscInitStruct.PLL.PLLN = 195;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -270,6 +273,8 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+
+		
   }
   /* USER CODE END Error_Handler_Debug */
 }

@@ -22,12 +22,14 @@
 
 /* USER CODE BEGIN 0 */
 
-uint32_t ADC1_Buf[ADC1_CHANNEL_CNT];
-
-uint32_t ADC1_DMA_CNT = 0;
+uint32_t ADC1_Buf[ADC1_CHANNEL_CNT * ADC1_Filter_Num ];
 
 
+uint32_t ADC1_In0_Buf[ADC1_Filter_Num];
+uint32_t ADC1_In1_Buf[ADC1_Filter_Num];
 
+
+uint32_t ADC1_Vref_Buf[ADC1_Filter_Num];
 
 
 /* USER CODE END 0 */
@@ -51,13 +53,13 @@ void MX_ADC1_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = ENABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC3;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 4;
   hadc1.Init.DMAContinuousRequests = ENABLE;
@@ -185,18 +187,61 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 /* USER CODE BEGIN 1 */
 
-double Get_ADC_Voltage(uint32_t *ADCnBuf,ADC_CHANNEL CHANNELn)
+/*  冒泡排序后取中间值平均*/
+extern void BBsort(uint32_t *arr, uint32_t size);
+double Get_ADC_Voltage(uint32_t *ADC_CHn_Buf,ADC_CHANNEL CHANNELn)
 {
-    return 1200.0*(ADCnBuf[CHANNELn]&0xFFF)/(ADCnBuf[ADC1_CHANNEL_Vref]&0xFFF);
+    uint32_t ADC_CHn_Sum = 0,ADC1_Vref_Sum = 0;
+
+
+    for(int i = CHANNELn,j = 0; i < ADC1_Filter_Num * ADC1_CHANNEL_CNT; i += ADC1_CHANNEL_CNT,j++) {
+        ADC_CHn_Buf[j]   = ADC1_Buf[i];
+        ADC1_Vref_Buf[j] = ADC1_Buf[i + ADC1_CHANNEL_Vref - CHANNELn];
+    }
+    BBsort(ADC_CHn_Buf, ADC1_Filter_Num);
+
+    for(int i = ADC1_Filter_Num/2 - ADC1_Filter_Num/10; i < ADC1_Filter_Num/2 + ADC1_Filter_Num/10 ; i++)
+    {
+        ADC_CHn_Sum += ADC_CHn_Buf[i];
+//					printf("i = %d\n",i);
+//					printf("ADC_CHn_Buf = %d\n",ADC_CHn_Buf[i]);
+    }
+
+    BBsort(ADC1_Vref_Buf, ADC1_Filter_Num);
+
+    for(int i = ADC1_Filter_Num/2 - ADC1_Filter_Num/10; i < ADC1_Filter_Num/2 + ADC1_Filter_Num/10 ; i++)
+    {
+        ADC1_Vref_Sum += ADC1_Vref_Buf[i];
+//					printf("i = %d\n",i);
+//					printf("ADC1_Vref_Buf = %d\n",ADC1_Vref_Buf[i]);
+    }
+
+    ADC_CHn_Sum = ADC_CHn_Sum/(ADC1_Filter_Num/5) ;
+    ADC1_Vref_Sum = ADC1_Vref_Sum/(ADC1_Filter_Num/5);
+
+    return ADC1_Vref*(ADC_CHn_Sum&0xFFF)/(ADC1_Vref_Sum &0xFFF);
+
 }
 
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
+//	static uint8_t ADC1_DMA_CNT = 0;
     if(hadc==(&hadc1))
     {
+        HAL_GPIO_TogglePin(ADC_Intterupt_GPIO_Port,ADC_Intterupt_Pin);
 
-        ADC1_DMA_CNT++;
+
+
+//
+//			ADC1_In0_Buf[ADC1_DMA_CNT] = ADC1_Buf[ADC1_CHANNEL_IN0];
+//			ADC1_Vref_Buf[ADC1_DMA_CNT] = ADC1_Buf[ADC1_CHANNEL_Vref];
+//        ADC1_DMA_CNT++;
+//			if(ADC1_DMA_CNT > ADC1_Filter_Num - 1)
+//			{
+//				ADC1_DMA_CNT  = 0;
+//
+//			}
     }
 }
 /* USER CODE END 1 */

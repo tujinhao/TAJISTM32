@@ -32,6 +32,9 @@ testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.
 testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.h
 testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
+testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.h
+testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.h
+testcodewithoutrtos\ff.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.h
 testcodewithoutrtos\ff.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 testcodewithoutrtos\ff.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
 testcodewithoutrtos\ff.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
