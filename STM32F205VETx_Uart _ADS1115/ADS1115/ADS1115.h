@@ -8,16 +8,16 @@
 extern I2C_HandleTypeDef hi2c1;
 
 
-#define ADS1115_MAX_CHANNEL		4
+//#define ADS1115_MAX_CHANNEL		4
 
 #define Accuracy 									32768	//ADC单端输入15位精度
-#define ADS1115_ADDRESS_GND					0x90	//ADDR PIN ->GND SLAVE ADDRESS 01001000 发送时要左移1
-#define ADS1115_ADDRESS_VDD						0x92	//ADDR PIN ->VDD
-#define ADS1115_ADDRESS_SDA					0x94	//ADDR PIN ->SDA
-#define ADS1115_ADDRESS_SCL				0x96	//ADDR PIN ->SCL
+//#define ADS1115_ADDRESS_GND					0x90	//ADDR PIN ->GND SLAVE ADDRESS 01001000 发送时要左移1
+//#define ADS1115_ADDRESS_VDD						0x92	//ADDR PIN ->VDD
+//#define ADS1115_ADDRESS_SDA					0x94	//ADDR PIN ->SDA
+//#define ADS1115_ADDRESS_SCL				0x96	//ADDR PIN ->SCL
 
 //*************ADDR Initial********************/
-#define ADS1115_ADDRESS		ADS1115_ADDRESS_GND		//ADDR PIN ->GND
+//#define ADS1115_ADDRESS		ADS1115_ADDRESS_GND		//ADDR PIN ->GND
 #define ADS1115_ADDRESS_W	ADS1115_ADDRESS|0x00	//write address
 #define ADS1115_ADDRESS_R	ADS1115_ADDRESS|0x01	//read address
 
@@ -75,8 +75,27 @@ extern I2C_HandleTypeDef hi2c1;
 #define ADS1115_COMP_QUE_2					0x0002		//Assert after four conversion
 #define ADS1115_COMP_QUE_3					0x0003		//Disable Comparator
 
+typedef enum 
+{
+	ADS1115_ADDRESS_GND			=		0x90,
+  ADS1115_ADDRESS_VDD				=		0x92,	//ADDR PIN ->VDD
+  ADS1115_ADDRESS_SDA			=		0x94,	//ADDR PIN ->SDA
+  ADS1115_ADDRESS_SCL			=	0x96	//ADDR PIN ->SCL
+
+}ADS1115_ADDRESS;
+
+typedef enum
+{
+  ADS1115_CHANNEL0 = 0U,      //ADC通道0   rank 1
+  ADS1115_CHANNEL1,           //通道  1
+	ADS1115_CHANNEL2,          //通道  2
+	ADS1115_CHANNEL3,          //通道  3
+	ADS1115_MAX_CHANNEL
+	
+}ADS1115_CHANNEL;
 typedef struct
 {
+	  //芯片寄存器设置
     uint16_t OS;
     uint16_t MUX;
     uint16_t PGA;
@@ -86,29 +105,41 @@ typedef struct
     uint16_t COMP_POL;
     uint16_t COMP_LAT;
     uint16_t COMP_QUE;
-	uint8_t ADDRESS;
+	//
+	//编程用
 	
+	ADS1115_CHANNEL CHANNEL;
+	
+	  ADS1115_ADDRESS ADDRESS;
+	 int16_t ADS1115_RawData[4];
+	 float ADS1115_Vol[4];
 } ADS1115_InitTypeDefine;
 
-extern int16_t ADS1115_RawData[4];
-extern float ADS1115_CHn_Vol[4];
+
+
+
+//extern int16_t ADS1115_RawData[4];
+//extern float ADS1115_CHn_Vol[4];
 void ADS1115_Init(void);
-void ADS1115_UserConfig_SingleConver(ADS1115_InitTypeDefine* hADS1115);
-void ADS1115_UserConfig_ContinuConver(void);
-uint8_t ADS1115_Config(ADS1115_InitTypeDefine* ADS1115_InitStruct);
+void ADS1115_UserConfig_SingleConver(ADS1115_InitTypeDefine* hADS1115 , ADS1115_ADDRESS ADDRESS);
+void ADS1115_UserConfig_ContinuConver(ADS1115_InitTypeDefine* ADS1115_InitStruct,ADS1115_ADDRESS ADDRESS);
+void ADS1115_Config(ADS1115_InitTypeDefine* ADS1115_InitStruct);
 
-uint8_t ADS1115_ReadRawData(int16_t* rawData);
-void ADS1115_ScanChannel(uint8_t channel);
-float ADS1115_RawDataToVoltage(int16_t rawData);
+void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 
-float ADS1115_GetVoltage(void);
-float ADS1115_GetAverageVoltage(uint16_t num);
+void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+void ADS1115_GetAverageVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 
-void ADS1115_RefreshAllChannel(void);
+void ADS1115_RefreshAllChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 
 
 
-extern ADS1115_InitTypeDefine ADS1115_InitType;
+extern ADS1115_InitTypeDefine ADS1115_ADDR_VDD;
+extern ADS1115_InitTypeDefine ADS1115_ADDR_GND;
+
+
 #endif
 
 

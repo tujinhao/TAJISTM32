@@ -325,27 +325,24 @@ void StartGetADC(void const * argument)
 
     HAL_ADC_Start_DMA(&hadc1,ADC1_Buf,ADC1_CHANNEL_CNT * ADC1_Filter_Num);  //DMA 数组大小为ADC1的通道数乘以ADC1需要滤波的数据量
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
-    ADS1115_UserConfig_SingleConver(&ADS1115_InitType);
-	uint8_t i = 0;
+    ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_GND,ADS1115_ADDRESS_GND);
+	ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_VDD,ADS1115_ADDRESS_VDD);
+	//uint8_t i = 0;
 
     /* Infinite loop */
     for(;;)
     {
-//        printf("CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));
-//        printf("CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));
+       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
+       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
 
-        ADS1115_ReadRawData(ADS1115_RawData);
-        
-      ADS1115_CHn_Vol[i] = ADS1115_GetVoltage();
-			ADS1115_RefreshAllChannel();
-			printf("\n\n CH %d vol = %.3f  \n\n",i,ADS1115_CHn_Vol[i] );
-
-			i++;
-			if(i > ADS1115_MAX_CHANNEL -1){
-			i = 0; 
-			}
+      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+			ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
+			printf("ADS1115 GND CH %d vol = %.3f  \n\n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
 			
-
+			
+      ADS1115_GetVoltage(&ADS1115_ADDR_VDD);
+			ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
+			printf("ADS1115 VDD CH %d vol = %.3f  \n\n",ADS1115_ADDR_VDD.CHANNEL,ADS1115_ADDR_VDD.ADS1115_Vol[ADS1115_ADDR_VDD.CHANNEL]);
         osDelay(100);
     }
     /* USER CODE END StartGetADC */

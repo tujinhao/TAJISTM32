@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F205VETx\STM32F205VETx.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F205VETx\STM32F205VETx.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Apr 26 13:05:01 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Apr 26 21:07:38 2022
 <BR><P>
 <H3>Maximum Stack Usage =        368 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -637,7 +637,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f205xx.o(RESET)
 </UL>
-<P><STRONG><a name="[88]"></a>ADS1115_Config</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, ads1115.o(i.ADS1115_Config))
+<P><STRONG><a name="[88]"></a>ADS1115_Config</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, ads1115.o(i.ADS1115_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = ADS1115_Config &rArr; HAL_I2C_Master_Transmit &rArr; I2C_MasterRequestWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Master_Transmit
@@ -655,7 +655,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGetADC
 </UL>
 
-<P><STRONG><a name="[8c]"></a>ADS1115_RawDataToVoltage</STRONG> (Thumb, 120 bytes, Stack size 8 bytes, ads1115.o(i.ADS1115_RawDataToVoltage))
+<P><STRONG><a name="[8c]"></a>ADS1115_RawDataToVoltage</STRONG> (Thumb, 174 bytes, Stack size 8 bytes, ads1115.o(i.ADS1115_RawDataToVoltage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = ADS1115_RawDataToVoltage &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -666,7 +666,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_GetVoltage
 </UL>
 
-<P><STRONG><a name="[8b]"></a>ADS1115_ReadRawData</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, ads1115.o(i.ADS1115_ReadRawData))
+<P><STRONG><a name="[8b]"></a>ADS1115_ReadRawData</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, ads1115.o(i.ADS1115_ReadRawData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = ADS1115_ReadRawData &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Master_Transmit
@@ -674,27 +674,21 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_RefreshAllChannel
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_GetVoltage
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGetADC
 </UL>
 
-<P><STRONG><a name="[8f]"></a>ADS1115_RefreshAllChannel</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, ads1115.o(i.ADS1115_RefreshAllChannel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ADS1115_RefreshAllChannel &rArr; ADS1115_ReadRawData &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
+<P><STRONG><a name="[8f]"></a>ADS1115_RefreshAllChannel</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, ads1115.o(i.ADS1115_RefreshAllChannel))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ADS1115_RefreshAllChannel &rArr; ADS1115_ReadRawData &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_ReadRawData
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_ScanChannel
 </UL>
 <BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGetADC
 </UL>
 
-<P><STRONG><a name="[90]"></a>ADS1115_ScanChannel</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, ads1115.o(i.ADS1115_ScanChannel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = ADS1115_ScanChannel &rArr; ADS1115_Config &rArr; HAL_I2C_Master_Transmit &rArr; I2C_MasterRequestWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
-</UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_Config
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_RefreshAllChannel
+<P><STRONG><a name="[90]"></a>ADS1115_ScanChannel</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, ads1115.o(i.ADS1115_ScanChannel), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_Config
 </UL>
 
-<P><STRONG><a name="[91]"></a>ADS1115_UserConfig_SingleConver</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, ads1115.o(i.ADS1115_UserConfig_SingleConver))
+<P><STRONG><a name="[91]"></a>ADS1115_UserConfig_SingleConver</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, ads1115.o(i.ADS1115_UserConfig_SingleConver))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = ADS1115_UserConfig_SingleConver &rArr; ADS1115_Config &rArr; HAL_I2C_Master_Transmit &rArr; I2C_MasterRequestWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_Config
@@ -825,6 +819,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartUartReceiveTask
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartPowerControl
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGetADC
 </UL>
 
 <P><STRONG><a name="[a2]"></a>HAL_ADCEx_InjectedConvCpltCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f2xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConvCpltCallback))
@@ -1544,14 +1539,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_Init
 </UL>
 
-<P><STRONG><a name="[69]"></a>StartGetADC</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, freertos.o(i.StartGetADC))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = StartGetADC &rArr; ADS1115_RefreshAllChannel &rArr; ADS1115_ReadRawData &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
+<P><STRONG><a name="[69]"></a>StartGetADC</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, freertos.o(i.StartGetADC))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = StartGetADC &rArr; ADS1115_RefreshAllChannel &rArr; ADS1115_ReadRawData &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_Voltage
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_UserConfig_SingleConver
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_RefreshAllChannel
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_ReadRawData
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1115_GetVoltage
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
