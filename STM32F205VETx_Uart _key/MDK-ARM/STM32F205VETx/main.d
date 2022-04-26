@@ -37,6 +37,8 @@ stm32f205vetx\main.o: ..\LOG\log.h
 stm32f205vetx\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\main.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\main.o: ../Core/Inc/main.h
+stm32f205vetx\main.o: ..\CONTROL\Digitalpower\power.h
+stm32f205vetx\main.o: ..\PID\pid.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 stm32f205vetx\main.o: ../Core/Inc/FreeRTOSConfig.h

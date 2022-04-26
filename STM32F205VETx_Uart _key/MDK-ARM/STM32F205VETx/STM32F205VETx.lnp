@@ -40,6 +40,8 @@
 "stm32f205vetx\port.o"
 "stm32f205vetx\log.o"
 "stm32f205vetx\sort.o"
+"stm32f205vetx\pid.o"
+"stm32f205vetx\power.o"
 --library_type=microlib --strict --scatter "STM32F205VETx\STM32F205VETx.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

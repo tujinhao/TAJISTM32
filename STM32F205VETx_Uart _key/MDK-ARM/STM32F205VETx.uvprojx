@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F205xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;      ../Drivers/STM32F2xx_HAL_Driver/Inc;      ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy;      ../Middlewares/Third_Party/FreeRTOS/Source/include;      ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;      ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;      ../Drivers/CMSIS/Device/ST/STM32F2xx/Include;      ../Drivers/CMSIS/Include;      ..\LOG;      ..\MDK-ARM;      ..\Sort</IncludePath>
+              <IncludePath>../Core/Inc;  ../Drivers/STM32F2xx_HAL_Driver/Inc;  ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy;  ../Middlewares/Third_Party/FreeRTOS/Source/include;  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;  ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;  ../Drivers/CMSIS/Device/ST/STM32F2xx/Include;  ../Drivers/CMSIS/Include;  ..\LOG;  ..\MDK-ARM;  ..\Sort;  ..\PID;  ..\CONTROL;  ..\CONTROL\Digitalpower</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -923,6 +923,31 @@
               <FileName>sort.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Sort\sort.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PID</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\PID\pid.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PowerControl</GroupName>
+          <Files>
+            <File>
+              <FileName>power.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CONTROL\Digitalpower\power.c</FilePath>
+            </File>
+            <File>
+              <FileName>power.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CONTROL\Digitalpower\power.h</FilePath>
             </File>
           </Files>
         </Group>

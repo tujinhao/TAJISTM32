@@ -37,3 +37,5 @@ stm32f205vetx\stm32f2xx_it.o: ..\LOG\log.h
 stm32f205vetx\stm32f2xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\stm32f2xx_it.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\stm32f2xx_it.o: ../Core/Inc/main.h
+stm32f205vetx\stm32f2xx_it.o: ..\CONTROL\Digitalpower\power.h
+stm32f205vetx\stm32f2xx_it.o: ..\PID\pid.h

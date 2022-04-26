@@ -38,3 +38,5 @@ stm32f205vetx\dma.o: ..\LOG\log.h
 stm32f205vetx\dma.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\dma.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\dma.o: ../Core/Inc/main.h
+stm32f205vetx\dma.o: ..\CONTROL\Digitalpower\power.h
+stm32f205vetx\dma.o: ..\PID\pid.h

@@ -46,6 +46,8 @@ stm32f205vetx\freertos.o: ..\LOG\log.h
 stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\freertos.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\freertos.o: ../Core/Inc/main.h
+stm32f205vetx\freertos.o: ..\CONTROL\Digitalpower\power.h
+stm32f205vetx\freertos.o: ..\PID\pid.h
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
@@ -56,3 +58,4 @@ stm32f205vetx\freertos.o: ../Core/Inc/usart.h
 stm32f205vetx\freertos.o: ../Core/Inc/ADC.h
 stm32f205vetx\freertos.o: ..\Sort\sort.h
 stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32f205vetx\freertos.o: ../Core/Inc/tim.h
