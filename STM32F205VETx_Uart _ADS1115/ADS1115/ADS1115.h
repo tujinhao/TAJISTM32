@@ -86,12 +86,15 @@ typedef enum
 
 typedef enum
 {
+	//单端
     ADS1115_CHANNEL0 = 0U,      //ADC通道0   rank 1
     ADS1115_CHANNEL1,           //通道  1
     ADS1115_CHANNEL2,          //通道  2
     ADS1115_CHANNEL3,          //通道  3
-  	ADS1115_MAX_CHANNEL,
-    ADS1115_Differ_01,
+  	ADS1115_MAX_CHANNEL,     //总数4
+	
+	//差分
+    ADS1115_Differ_01,    //ch0和ch1差分
     ADS1115_Differ_03,
     ADS1115_Differ_13,
     ADS1115_Differ_23,
@@ -120,26 +123,21 @@ typedef struct
     float ADS1115_Vol[8];
 } ADS1115_InitTypeDefine;
 
-union Pointer_Register_Byte
-{
-    uint8_t all;
-    uint16_t Register_Address:2;
-    uint16_t UnusedBit:6;
+//union Pointer_Register_Byte
+//{
+//    uint8_t all;
+//    uint16_t Register_Address:2;
+//    uint16_t UnusedBit:6;
 
 
-};
+//};
 
 
 
 void ADS1115_UserConfig_SingleConver(ADS1115_InitTypeDefine* hADS1115, ADS1115_ADDRESS ADDRESS);
 void ADS1115_UserConfig_ContinuConver(ADS1115_InitTypeDefine* ADS1115_InitStruct,ADS1115_ADDRESS ADDRESS);
-
-
-//void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHANNEL ch);
-//void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
-
-void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHANNEL ch);
 void ADS1115_GetAverageVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 
 void ADS1115_RefreshAllChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct);

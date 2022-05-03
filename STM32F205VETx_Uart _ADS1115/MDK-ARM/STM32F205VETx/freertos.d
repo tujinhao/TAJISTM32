@@ -1,7 +1,7 @@
 stm32f205vetx\freertos.o: ../Core/Src/freertos.c
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
+stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
 stm32f205vetx\freertos.o: ../Core/Inc/FreeRTOSConfig.h
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 stm32f205vetx\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
@@ -42,9 +42,9 @@ stm32f205vetx\freertos.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_
 stm32f205vetx\freertos.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx\freertos.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
 stm32f205vetx\freertos.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
-stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h
 stm32f205vetx\freertos.o: ..\LOG\log.h
-stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdarg.h
 stm32f205vetx\freertos.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\freertos.o: ../Core/Inc/main.h
 stm32f205vetx\freertos.o: ..\CONTROL\Digitalpower\power.h
@@ -58,6 +58,6 @@ stm32f205vetx\freertos.o: ../Core/Inc/gpio.h
 stm32f205vetx\freertos.o: ../Core/Inc/usart.h
 stm32f205vetx\freertos.o: ../Core/Inc/ADC.h
 stm32f205vetx\freertos.o: ..\Sort\sort.h
-stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
 stm32f205vetx\freertos.o: ../Core/Inc/tim.h
 stm32f205vetx\freertos.o: ..\ADS1115\ADS1115.h

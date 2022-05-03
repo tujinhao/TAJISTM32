@@ -335,13 +335,13 @@ void StartGetADC(void const * argument)
 //       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
 //       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
 
-      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+      ADS1115_GetVoltage(&ADS1115_ADDR_GND,ADS1115_Differ_01);
 			//ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
 			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
 	
-			ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_Differ_01);
 			
-      ADS1115_GetVoltage(&ADS1115_ADDR_VDD);
+			
+      ADS1115_GetVoltage(&ADS1115_ADDR_VDD,ADS1115_ADDR_VDD.CHANNEL);
 			ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
 	    printf("ADS1115 VDD CH %d vol = %.3f  \n",ADS1115_ADDR_VDD.CHANNEL,ADS1115_ADDR_VDD.ADS1115_Vol[ADS1115_ADDR_VDD.CHANNEL]);
 			

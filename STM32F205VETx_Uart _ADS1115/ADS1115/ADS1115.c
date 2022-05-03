@@ -1,11 +1,13 @@
 #include "ads1115.h"
 
-//#ifdef ADS1115
+
 
 
 ADS1115_InitTypeDefine ADS1115_ADDR_GND;
 ADS1115_InitTypeDefine ADS1115_ADDR_VDD;
-float ADS1115_CHn_Vol[4];
+
+
+
 /**
  * 可供外部调用的全局变量，记录了ADS1115采样的原始16位数据。调用void ADS1115_RefreshAllChannel( )函数可以刷新这个变量。
  * 通过定义宏ADS1115_USE_FILTER，可以将ADS1115的轮询采样数据经过滑动滤波后，保存到ADS1115_RawData[]中。
@@ -25,9 +27,7 @@ int16_t ADS1115_RawData[4] = {0};
 /**
  * @brief 配置ADS1115
  * @param ADS1115_InitStruct: 用来配置ADS1115的结构体变量指针
- * @return 配置结果
- * 		@arg: fail
- * 		@arg: success
+
  */
 static void ADS1115_Config(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 {
@@ -129,8 +129,6 @@ void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHAN
 	{
 	case ADS1115_CHANNEL0:
 		ADS1115_InitStruct->MUX = ADS1115_MUX_Channel_0;
-	
-	
 		break;
 	case ADS1115_CHANNEL1:
 		ADS1115_InitStruct->MUX = ADS1115_MUX_Channel_1;
@@ -213,12 +211,12 @@ static void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 
 
 /**
- * @brief 直接获取ADS1115当前通道的电压采样值
+ * @brief 直接获取ADS1115当前通道的电压采样值  第一次采样默认ch0
  * @return 电压采样值
  */
-void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct)
+void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHANNEL ch)
 {
-	
+	ADS1115_ScanChannel(ADS1115_InitStruct,ch);
 
 	ADS1115_ReadRawData(ADS1115_InitStruct);
 
