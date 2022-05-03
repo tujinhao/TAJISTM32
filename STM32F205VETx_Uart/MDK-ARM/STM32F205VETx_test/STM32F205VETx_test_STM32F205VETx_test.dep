@@ -86,7 +86,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x621DB543)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5E8E2EB2)
 I (..\LOG\log.h)(0x6177E849)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5E8E2EB2)
-F (../Core/Src/freertos.c)(0x624531D2)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM-I.\RTE\_STM32F205VETx_test-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx_test\freertos.o --omf_browse stm32f205vetx_test\freertos.crf --depend stm32f205vetx_test\freertos.d)
+F (../Core/Src/freertos.c)(0x6270CB84)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM-I.\RTE\_STM32F205VETx_test-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx_test\freertos.o --omf_browse stm32f205vetx_test\freertos.crf --depend stm32f205vetx_test\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x621DB527)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5E8E2EB2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E2EB2)
@@ -269,42 +269,6 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x621DB543)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h)(0x621DB543)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h)(0x621DB543)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x621DB543)
-F (.\SDCard.c)(0x62452D69)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM-I.\RTE\_STM32F205VETx_test-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx_test\sdcard.o --omf_browse stm32f205vetx_test\sdcard.crf --depend stm32f205vetx_test\sdcard.d)
-I (../Core/Inc/main.h)(0x62444DB2)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h)(0x621DB543)
-I (../Core/Inc/stm32f2xx_hal_conf.h)(0x62444DB2)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_def.h)(0x621DB543)
-I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f2xx.h)(0x621DB543)
-I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f205xx.h)(0x621DB543)
-I (../Drivers/CMSIS/Include/core_cm3.h)(0x621DB526)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E2EB2)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x621DB526)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x621DB526)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x621DB526)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x621DB526)
-I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/system_stm32f2xx.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x621DB543)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5E8E2EB2)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_gpio.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_gpio_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_exti.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dma.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dma_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_cortex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h)(0x621DB543)
-I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x621DB543)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5E8E2EB2)
-I (..\LOG\log.h)(0x6177E849)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5E8E2EB2)
-I (SDCard.h)(0x6245325F)
-F (.\SDCard.h)(0x6245325F)()
 F (../Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.c)(0x621DB543)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM-I.\RTE\_STM32F205VETx_test-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx_test\stm32f2xx_hal.o --omf_browse stm32f205vetx_test\stm32f2xx_hal.crf --depend stm32f205vetx_test\stm32f2xx_hal.d)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h)(0x621DB543)
 I (../Core/Inc/stm32f2xx_hal_conf.h)(0x62444DB2)

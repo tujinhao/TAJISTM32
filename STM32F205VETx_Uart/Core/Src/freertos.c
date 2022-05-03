@@ -153,7 +153,7 @@ void StartDefaultTask(void const * argument)
 void StartUartTask(void const * argument)
 {
   /* USER CODE BEGIN StartUartTask */
-	SD_Init();
+	//SD_Init();
   /* Infinite loop */
   for(;;)
   {

@@ -17,11 +17,11 @@ int16_t ADS1115_RawData[4] = {0};
 /**
  * @brief 完成芯片控制端口初始化，并设置初始状态
  */
-//static void ADS1115_Init()
-//{
-//	
+static void ADS1115_Init()
+{
+	
 
-//}
+}
 /**
  * @brief 配置ADS1115
  * @param ADS1115_InitStruct: 用来配置ADS1115的结构体变量指针
@@ -121,10 +121,8 @@ static void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 	ADS1115_Differ_13,
 	ADS1115_Differ_23,
  */
-void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHANNEL ch)
+static void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 {
-	
-	ADS1115_InitStruct->CHANNEL = ch;
 	switch (ADS1115_InitStruct->CHANNEL)
 	{
 	case ADS1115_CHANNEL0:
@@ -150,7 +148,7 @@ void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHAN
 			case ADS1115_Differ_13:
 		ADS1115_InitStruct->MUX = ADS1115_MUX_Differ_13;
 		break;
-	case ADS1115_Differ_23:
+				case ADS1115_Differ_23:
 		ADS1115_InitStruct->MUX = ADS1115_MUX_Differ_23;
 		break;
 	default:
@@ -269,7 +267,7 @@ void ADS1115_RefreshAllChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 		ADS1115_InitStruct->CHANNEL = ADS1115_CHANNEL0;
 
 	//结束采样后切换至下一通道
-	ADS1115_ScanChannel(ADS1115_InitStruct,ADS1115_InitStruct->CHANNEL);
+	ADS1115_ScanChannel(ADS1115_InitStruct);
 }
 
 
