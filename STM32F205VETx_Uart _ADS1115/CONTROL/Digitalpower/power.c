@@ -21,7 +21,7 @@ Vout = K*Vadc £¨+ B£©  //1k ºÍ9kµç×è KÎª10
 
 double ADC2Iout_K_Set = 2;
 double ADC2Iout_B_Set = -5000;
-double ADC2Vout_K_Set = 10;
+double ADC2Vout_K_Set = 21;
 double ADC2Vout_B_Set = 0;
 
 

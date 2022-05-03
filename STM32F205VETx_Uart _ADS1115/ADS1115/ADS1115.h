@@ -77,8 +77,8 @@ extern I2C_HandleTypeDef hi2c1;
 
 typedef enum 
 {
-	ADS1115_ADDRESS_GND			=		0x90,
-  ADS1115_ADDRESS_VDD				=		0x92,	//ADDR PIN ->VDD
+	ADS1115_ADDRESS_GND			=		0x90,   //LAVE ADDRESS 01001000 ·¢ËÍÊ±Òª×óÒÆ1
+  ADS1115_ADDRESS_VDD				=		0x92,	//ADDR PIN ->VDD  
   ADS1115_ADDRESS_SDA			=		0x94,	//ADDR PIN ->SDA
   ADS1115_ADDRESS_SCL			=	0x96	//ADDR PIN ->SCL
 
@@ -115,18 +115,23 @@ typedef struct
 	 float ADS1115_Vol[4];
 } ADS1115_InitTypeDefine;
 
+union Pointer_Register_Byte
+{
+	uint8_t all;
+	uint16_t Register_Address:2;
+	uint16_t UnusedBit:6;
+	
+
+};
 
 
 
-//extern int16_t ADS1115_RawData[4];
-//extern float ADS1115_CHn_Vol[4];
-void ADS1115_Init(void);
 void ADS1115_UserConfig_SingleConver(ADS1115_InitTypeDefine* hADS1115 , ADS1115_ADDRESS ADDRESS);
 void ADS1115_UserConfig_ContinuConver(ADS1115_InitTypeDefine* ADS1115_InitStruct,ADS1115_ADDRESS ADDRESS);
-void ADS1115_Config(ADS1115_InitTypeDefine* ADS1115_InitStruct);
 
-void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct);
-void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+
+//void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct);
+//void ADS1115_ScanChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);
 
 void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct);

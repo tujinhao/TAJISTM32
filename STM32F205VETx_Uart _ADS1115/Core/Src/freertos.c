@@ -197,8 +197,8 @@ void StartUartSendTask(void const * argument)
 //    osMessagePut(CmdQueueHandle, 1, 0);//发送消息1
 
         //HAL_UART_Transmit_DMA(&huart2, (uint8_t*)AT_get_time,  sizeof(AT_get_time));  //发送命令
-        EMLOG(LOG_DEBUG,"mode = %d  Vout_ADC = %.3f   Vout_Cal = %.3f\n",MyPower.mode,MyPower.Vout_ADC,MyPower.Vout_Cal);
-        EMLOG(LOG_DEBUG,"mode = %d  Iout_ADC = %.3f   Iout_Cal = %.3f\n",MyPower.mode,MyPower.Iout_ADC,MyPower.Iout_Cal);
+//        EMLOG(LOG_DEBUG,"mode = %d  Vout_ADC = %.3f   Vout_Cal = %.3f\n",MyPower.mode,MyPower.Vout_ADC,MyPower.Vout_Cal);
+//        EMLOG(LOG_DEBUG,"mode = %d  Iout_ADC = %.3f   Iout_Cal = %.3f\n",MyPower.mode,MyPower.Iout_ADC,MyPower.Iout_Cal);
 
 
 
@@ -332,8 +332,8 @@ void StartGetADC(void const * argument)
     /* Infinite loop */
     for(;;)
     {
-       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
-       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
+//       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
+//       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
 
       ADS1115_GetVoltage(&ADS1115_ADDR_GND);
 			ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
@@ -343,7 +343,9 @@ void StartGetADC(void const * argument)
       ADS1115_GetVoltage(&ADS1115_ADDR_VDD);
 			ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
 			printf("ADS1115 VDD CH %d vol = %.3f  \n\n",ADS1115_ADDR_VDD.CHANNEL,ADS1115_ADDR_VDD.ADS1115_Vol[ADS1115_ADDR_VDD.CHANNEL]);
-        osDelay(100);
+			
+			
+        osDelay(1000);
     }
     /* USER CODE END StartGetADC */
 }
@@ -358,7 +360,7 @@ void StartGetADC(void const * argument)
 void StartPowerControl(void const * argument)
 {
     /* USER CODE BEGIN StartPowerControl */
-    double CONSTANT_Vol_Set = 22000,CONSTANT_Cur_Set = 2000;    //稳压模式22000mV  恒流模式2000mA
+    double CONSTANT_Vol_Set = 15000,CONSTANT_Cur_Set = 2000;    //稳压模式22000mV  恒流模式2000mA
 
     Pid_Init();
     Power_Init(CONSTANT_Vol,CONSTANT_Vol_Set);
@@ -391,12 +393,12 @@ void StartPowerControl(void const * argument)
             printf("恒压\n");
             MyPower.mode = CONSTANT_Vol;
             MyPower.Vout_Set = CONSTANT_Vol_Set;
-            Control(MyPower.mode, MyPower.status, MyPower.Vout_Set);    //恒流
+            Control(MyPower.mode, MyPower.status, MyPower.Vout_Set);    //恒压
         }
 
 
 
-        osDelay(1000);     //pid控制间隔时间 单位为ms    调试时时间间隔可以调长
+        osDelay(10000);     //pid控制间隔时间 单位为ms    调试时时间间隔可以调长
     }
     /* USER CODE END StartPowerControl */
 }

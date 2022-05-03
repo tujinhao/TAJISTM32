@@ -22,6 +22,30 @@ void ADS1115_Init()
 	
 
 }
+/**
+ * @brief 配置ADS1115
+ * @param ADS1115_InitStruct: 用来配置ADS1115的结构体变量指针
+ * @return 配置结果
+ * 		@arg: fail
+ * 		@arg: success
+ */
+void ADS1115_Config(ADS1115_InitTypeDefine *ADS1115_InitStruct)
+{
+	uint16_t Config;
+	uint8_t Writebuff[3];
+
+
+	Config = ADS1115_InitStruct->OS + ADS1115_InitStruct->MUX + ADS1115_InitStruct->PGA + ADS1115_InitStruct->MODE
+			+ ADS1115_InitStruct->DataRate + ADS1115_InitStruct->COMP_MODE + ADS1115_InitStruct->COMP_POL
+			+ ADS1115_InitStruct->COMP_LAT + ADS1115_InitStruct->COMP_QUE;
+  Writebuff[0] = ADS1115_Pointer_ConfigReg;
+	Writebuff[1] = (unsigned char) ((Config >> 8) & 0xFF);
+	Writebuff[2] = (unsigned char) (Config & 0xFF);
+	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS, Writebuff, 3, 100);
+
+}
+
+
 
 
 /**
@@ -61,27 +85,6 @@ void ADS1115_UserConfig_ContinuConver(ADS1115_InitTypeDefine* ADS1115_InitStruct
 }
 
 
-/**
- * @brief 配置ADS1115
- * @param ADS1115_InitStruct: 用来配置ADS1115的结构体变量指针
- * @return 配置结果
- * 		@arg: fail
- * 		@arg: success
- */
-void ADS1115_Config(ADS1115_InitTypeDefine *ADS1115_InitStruct)
-{
-	uint16_t Config;
-	uint8_t Writebuff[3];
-
-	Config = ADS1115_InitStruct->OS + ADS1115_InitStruct->MUX + ADS1115_InitStruct->PGA + ADS1115_InitStruct->MODE
-			+ ADS1115_InitStruct->DataRate + ADS1115_InitStruct->COMP_MODE + ADS1115_InitStruct->COMP_POL
-			+ ADS1115_InitStruct->COMP_LAT + ADS1115_InitStruct->COMP_QUE;
-  Writebuff[0] = ADS1115_Pointer_ConfigReg;
-	Writebuff[1] = (unsigned char) ((Config >> 8) & 0xFF);
-	Writebuff[2] = (unsigned char) (Config & 0xFF);
-	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS, Writebuff, 3, 100);
-
-}
 
 
 
@@ -244,11 +247,6 @@ void ADS1115_RefreshAllChannel(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 	//ADS1115总共4个通道
 	ADS1115_InitStruct->CHANNEL++;
 
-
-	
-	
-
-	
 	if(ADS1115_InitStruct->CHANNEL > ADS1115_MAX_CHANNEL-1)
 		ADS1115_InitStruct->CHANNEL = ADS1115_CHANNEL0;
 

@@ -98,6 +98,6 @@ void Reset_iPid(void)
 
 void Pid_Init(void)
 {
-	Set_vPid(1,0,0);   //待修改  ，应该从Flash中读取存储的pid值
+	Set_vPid(0.01,0,0);   //待修改  ，应该从Flash中读取存储的pid值
 	Set_iPid(0.04,0.0005,0.005);
 }
