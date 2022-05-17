@@ -41,7 +41,7 @@ static void ADS1115_Config(ADS1115_InitTypeDefine *ADS1115_InitStruct)
   Writebuff[0] = ADS1115_Pointer_ConfigReg;
 	Writebuff[1] = (unsigned char) ((Config >> 8) & 0xFF);
 	Writebuff[2] = (unsigned char) (Config & 0xFF);
-	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS, Writebuff, 3, 100);
+	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS<<1, Writebuff, 3, 100);
 
 }
 
@@ -63,7 +63,7 @@ void ADS1115_UserConfig_SingleConver(ADS1115_InitTypeDefine* ADS1115_InitStruct,
 	ADS1115_InitStruct->PGA = ADS1115_PGA_4096;
 	ADS1115_InitStruct->ADDRESS = ADDRESS;
 	ADS1115_InitStruct->CHANNEL = ADS1115_CHANNEL0;
-	ADS1115_Config(ADS1115_InitStruct);
+	//ADS1115_Config(ADS1115_InitStruct);
 	
 }
 
@@ -81,7 +81,7 @@ void ADS1115_UserConfig_ContinuConver(ADS1115_InitTypeDefine* ADS1115_InitStruct
 	ADS1115_InitStruct->MUX = ADS1115_MUX_Channel_0;
 	ADS1115_InitStruct->OS = ADS1115_OS_OperationalStatus;
 	ADS1115_InitStruct->PGA = ADS1115_PGA_4096;
-	ADS1115_Config(ADS1115_InitStruct);
+//ADS1115_Config(ADS1115_InitStruct);
 }
 
 
@@ -102,10 +102,10 @@ static void ADS1115_ReadRawData(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 	uint8_t Writebuff[1];
 	Writebuff[0] = ADS1115_Pointer_ConverReg;
 	
-	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS, Writebuff, 3, 100);
+	HAL_I2C_Master_Transmit(&hi2c1, ADS1115_InitStruct->ADDRESS<<1, Writebuff, 1, 100);
 	
 	
-	HAL_I2C_Master_Receive(&hi2c1, ADS1115_InitStruct->ADDRESS , Result, 2, 100);
+	HAL_I2C_Master_Receive(&hi2c1, ADS1115_InitStruct->ADDRESS<<1 , Result, 2, 100);
 	
 	ADS1115_InitStruct->ADS1115_RawData[ADS1115_InitStruct->CHANNEL]  =  (int16_t) (((Result[0] << 8) & 0xFF00) | (Result[1] & 0xFF));
 
@@ -218,7 +218,7 @@ static void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct)
  */
 void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct)
 {
-	
+	// ADS1115_Config(ADS1115_InitStruct);
 
 	ADS1115_ReadRawData(ADS1115_InitStruct);
 

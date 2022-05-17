@@ -32,6 +32,7 @@
 #include "string.h"
 #include "tim.h"
 #include "ADS1115.h"
+#include "i2c.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -140,7 +141,7 @@ void MX_FREERTOS_Init(void) {
     UartReceiveTaskHandle = osThreadCreate(osThread(UartReceiveTask), NULL);
 
     /* definition and creation of GetADC */
-    osThreadDef(GetADC, StartGetADC, osPriorityNormal, 0, 128);
+    osThreadDef(GetADC, StartGetADC, osPriorityRealtime , 0, 128);
     GetADCHandle = osThreadCreate(osThread(GetADC), NULL);
 
     /* definition and creation of PowerControl */
@@ -326,7 +327,11 @@ void StartGetADC(void const * argument)
     HAL_ADC_Start_DMA(&hadc1,ADC1_Buf,ADC1_CHANNEL_CNT * ADC1_Filter_Num);  //DMA 数组大小为ADC1的通道数乘以ADC1需要滤波的数据量
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
     ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_GND,ADS1115_ADDRESS_GND);
-	ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_VDD,ADS1115_ADDRESS_VDD);
+	  ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_VDD,ADS1115_ADDRESS_VDD);
+///	Continu
+	   ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_GND,ADS1115_ADDRESS_GND);
+	  ADS1115_UserConfig_SingleConver(&ADS1115_ADDR_VDD,ADS1115_ADDRESS_VDD);
+	
 	//uint8_t i = 0;
 
     /* Infinite loop */
@@ -334,19 +339,45 @@ void StartGetADC(void const * argument)
     {
 //       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
 //       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
-
-      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
-			//ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
-			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
 	
-			ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_Differ_01);
+//			
 			
+//						ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_CHANNEL2);
+//      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+//		//	ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
+//			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
+//				ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_CHANNEL3);
+//      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+//		//	ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
+//	//		printf("ADS1115 GND state %d\n",HAL_I2C_IsDeviceReady (&hi2c1,ADS1115_ADDR_GND.ADDRESS>>2, 10,10));
+//			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
+//	
+//			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		//	printf("ADS1115 VDD state %d",HAL_I2C_IsDeviceReady (&hi2c1,ADS1115_ADDR_VDD.ADDRESS>>2, 10,10));
+			ADS1115_ScanChannel(&ADS1115_ADDR_VDD,ADS1115_Differ_23);
       ADS1115_GetVoltage(&ADS1115_ADDR_VDD);
-			ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
+		//ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
 	    printf("ADS1115 VDD CH %d vol = %.3f  \n",ADS1115_ADDR_VDD.CHANNEL,ADS1115_ADDR_VDD.ADS1115_Vol[ADS1115_ADDR_VDD.CHANNEL]);
 			
 			
-        osDelay(500);
+			
+      //  osDelay(50);
+				
+				
+			ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_Differ_23);
+      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+		//	ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
+			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
+		osDelay(50);
     }
     /* USER CODE END StartGetADC */
 }
@@ -399,7 +430,7 @@ void StartPowerControl(void const * argument)
 
 
 
-        osDelay(10000);     //pid控制间隔时间 单位为ms    调试时时间间隔可以调长
+        osDelay(1000);     //pid控制间隔时间 单位为ms    调试时时间间隔可以调长
     }
     /* USER CODE END StartPowerControl */
 }

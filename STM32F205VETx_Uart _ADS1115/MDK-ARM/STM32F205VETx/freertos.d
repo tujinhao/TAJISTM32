@@ -61,3 +61,4 @@ stm32f205vetx\freertos.o: ..\Sort\sort.h
 stm32f205vetx\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32f205vetx\freertos.o: ../Core/Inc/tim.h
 stm32f205vetx\freertos.o: ..\ADS1115\ADS1115.h
+stm32f205vetx\freertos.o: ../Core/Inc/i2c.h

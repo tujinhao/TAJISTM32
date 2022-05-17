@@ -103,7 +103,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5E8E2EB2)
 I (../Core/Inc/stm32f2xx_it.h)(0x62664BB3)
 I (..\CONTROL\Digitalpower\power.h)(0x6263C0DA)
 I (..\PID\pid.h)(0x6263A0FC)
-F (../Core/Src/freertos.c)(0x6270D639)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM -I ..\Sort -I ..\PID -I ..\CONTROL -I ..\CONTROL\Digitalpower -I ..\ADS1115-I.\RTE\_STM32F205VETx-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx\freertos.o --omf_browse stm32f205vetx\freertos.crf --depend stm32f205vetx\freertos.d)
+F (../Core/Src/freertos.c)(0x62830CD7)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM -I ..\Sort -I ..\PID -I ..\CONTROL -I ..\CONTROL\Digitalpower -I ..\ADS1115-I.\RTE\_STM32F205VETx-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx\freertos.o --omf_browse stm32f205vetx\freertos.crf --depend stm32f205vetx\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x621DB527)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5E8E2EB2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E2EB2)
@@ -163,7 +163,8 @@ I (../Core/Inc/ADC.h)(0x62664BB0)
 I (..\Sort\sort.h)(0x6260BCBA)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E8E2EB2)
 I (../Core/Inc/tim.h)(0x62664BB2)
-I (..\ADS1115\ADS1115.h)(0x6270D5B7)
+I (..\ADS1115\ADS1115.h)(0x62830C2B)
+I (../Core/Inc/i2c.h)(0x62664BB1)
 F (../Core/Src/adc.c)(0x62676A41)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM -I ..\Sort -I ..\PID -I ..\CONTROL -I ..\CONTROL\Digitalpower -I ..\ADS1115-I.\RTE\_STM32F205VETx-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx\adc.o --omf_browse stm32f205vetx\adc.crf --depend stm32f205vetx\adc.d)
 I (../Core/Inc/adc.h)(0x62664BB0)
 I (../Core/Inc/main.h)(0x62664BB7)
@@ -1381,8 +1382,8 @@ I (../Core/Inc/stm32f2xx_it.h)(0x62664BB3)
 I (..\PID\pid.h)(0x6263A0FC)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E2EB2)
 F (..\CONTROL\Digitalpower\power.h)(0x6263C0DA)()
-F (..\ADS1115\ADS1115.c)(0x6270D5CC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM -I ..\Sort -I ..\PID -I ..\CONTROL -I ..\CONTROL\Digitalpower -I ..\ADS1115-I.\RTE\_STM32F205VETx-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx\ads1115.o --omf_browse stm32f205vetx\ads1115.crf --depend stm32f205vetx\ads1115.d)
-I (..\ADS1115\ads1115.h)(0x6270D5B7)
+F (..\ADS1115\ADS1115.c)(0x62830B69)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc -I ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -I ../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I ../Drivers/CMSIS/Include -I ..\LOG -I ..\MDK-ARM -I ..\Sort -I ..\PID -I ..\CONTROL -I ..\CONTROL\Digitalpower -I ..\ADS1115-I.\RTE\_STM32F205VETx-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F2xx\Include-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F205xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F205xx-o stm32f205vetx\ads1115.o --omf_browse stm32f205vetx\ads1115.crf --depend stm32f205vetx\ads1115.d)
+I (..\ADS1115\ads1115.h)(0x62830C2B)
 I (../Core/Inc/main.h)(0x62664BB7)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h)(0x621DB543)
 I (../Core/Inc/stm32f2xx_hal_conf.h)(0x62664BB6)
@@ -1422,4 +1423,4 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5E8E2EB2)
 I (../Core/Inc/stm32f2xx_it.h)(0x62664BB3)
 I (..\CONTROL\Digitalpower\power.h)(0x6263C0DA)
 I (..\PID\pid.h)(0x6263A0FC)
-F (..\ADS1115\ADS1115.h)(0x6270D5B7)()
+F (..\ADS1115\ADS1115.h)(0x62830C2B)()

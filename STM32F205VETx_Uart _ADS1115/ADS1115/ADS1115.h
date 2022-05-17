@@ -77,10 +77,10 @@ extern I2C_HandleTypeDef hi2c1;
 
 typedef enum
 {
-    ADS1115_ADDRESS_GND			=		0x90,   //LAVE ADDRESS 01001000 发送时要左移1
-    ADS1115_ADDRESS_VDD				=		0x92,	//ADDR PIN ->VDD
-    ADS1115_ADDRESS_SDA			=		0x94,	//ADDR PIN ->SDA
-    ADS1115_ADDRESS_SCL			=	0x96	//ADDR PIN ->SCL
+    ADS1115_ADDRESS_GND			=		0x48,   //LAVE ADDRESS 01001000 发送时要左移1   0x48
+    ADS1115_ADDRESS_VDD				=		0x49,	//ADDR PIN ->VDD   0x49
+    ADS1115_ADDRESS_SDA			=		0x4A,	//ADDR PIN ->SDA  0x4a
+    ADS1115_ADDRESS_SCL			=	0x4B	//ADDR PIN ->SCL    0x4b
 
 } ADS1115_ADDRESS;
 
@@ -116,8 +116,8 @@ typedef struct
     ADS1115_CHANNEL CHANNEL;
 
     ADS1115_ADDRESS ADDRESS;
-    int16_t ADS1115_RawData[8];
-    float ADS1115_Vol[8];
+    int16_t ADS1115_RawData[10];
+    float ADS1115_Vol[10];
 } ADS1115_InitTypeDefine;
 
 union Pointer_Register_Byte
