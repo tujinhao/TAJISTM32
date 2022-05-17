@@ -46,6 +46,6 @@
 "stm32f205vetx\power.o"
 "stm32f205vetx\ads1115.o"
 --library_type=microlib --strict --scatter "STM32F205VETx\STM32F205VETx.sct"
---summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "STM32F205VETx.map" -o STM32F205VETx\STM32F205VETx.axf
