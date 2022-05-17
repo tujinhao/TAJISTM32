@@ -216,11 +216,11 @@ static void ADS1115_RawDataToVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct)
  */
 void ADS1115_GetVoltage(ADS1115_InitTypeDefine *ADS1115_InitStruct,ADS1115_CHANNEL ch)
 {
-<<<<<<< HEAD
+
 	// ADS1115_Config(ADS1115_InitStruct);
-=======
+
 	ADS1115_ScanChannel(ADS1115_InitStruct,ch);
->>>>>>> 630a7fbfb4897c9b657295480a686eca93bcf0c8
+
 
 	ADS1115_ReadRawData(ADS1115_InitStruct);
 

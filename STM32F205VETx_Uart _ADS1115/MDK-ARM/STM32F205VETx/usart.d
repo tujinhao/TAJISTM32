@@ -35,9 +35,9 @@ stm32f205vetx\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
 stm32f205vetx\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
 stm32f205vetx\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-stm32f205vetx\usart.o: ..\LOG\log.h
+stm32f205vetx\usart.o: ../LOG/log.h
 stm32f205vetx\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\usart.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\usart.o: ../Core/Inc/main.h
-stm32f205vetx\usart.o: ..\CONTROL\Digitalpower\power.h
-stm32f205vetx\usart.o: ..\PID\pid.h
+stm32f205vetx\usart.o: ../CONTROL/Digitalpower/power.h
+stm32f205vetx\usart.o: ../PID/pid.h

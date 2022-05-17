@@ -98,59 +98,59 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   * @retval None
   */
 void MX_FREERTOS_Init(void) {
-    /* USER CODE BEGIN Init */
+  /* USER CODE BEGIN Init */
 
-    /* USER CODE END Init */
+  /* USER CODE END Init */
 
-    /* USER CODE BEGIN RTOS_MUTEX */
+  /* USER CODE BEGIN RTOS_MUTEX */
     /* add mutexes, ... */
-    /* USER CODE END RTOS_MUTEX */
+  /* USER CODE END RTOS_MUTEX */
 
-    /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
     /* add semaphores, ... */
-    /* USER CODE END RTOS_SEMAPHORES */
+  /* USER CODE END RTOS_SEMAPHORES */
 
-    /* USER CODE BEGIN RTOS_TIMERS */
+  /* USER CODE BEGIN RTOS_TIMERS */
     /* start timers, add new ones, ... */
-    /* USER CODE END RTOS_TIMERS */
+  /* USER CODE END RTOS_TIMERS */
 
-    /* Create the queue(s) */
-    /* definition and creation of CmdQueue */
-    osMessageQDef(CmdQueue, 16, uint16_t);
-    CmdQueueHandle = osMessageCreate(osMessageQ(CmdQueue), NULL);
+  /* Create the queue(s) */
+  /* definition and creation of CmdQueue */
+  osMessageQDef(CmdQueue, 16, uint16_t);
+  CmdQueueHandle = osMessageCreate(osMessageQ(CmdQueue), NULL);
 
-    /* USER CODE BEGIN RTOS_QUEUES */
+  /* USER CODE BEGIN RTOS_QUEUES */
     /* add queues, ... */
-    /* USER CODE END RTOS_QUEUES */
+  /* USER CODE END RTOS_QUEUES */
 
-    /* Create the thread(s) */
-    /* definition and creation of LEDTask */
-    osThreadDef(LEDTask, StartLEDTask, osPriorityNormal, 0, 128);
-    LEDTaskHandle = osThreadCreate(osThread(LEDTask), NULL);
+  /* Create the thread(s) */
+  /* definition and creation of LEDTask */
+  osThreadDef(LEDTask, StartLEDTask, osPriorityNormal, 0, 128);
+  LEDTaskHandle = osThreadCreate(osThread(LEDTask), NULL);
 
-    /* definition and creation of UartSendTask */
-    osThreadDef(UartSendTask, StartUartSendTask, osPriorityNormal, 0, 128);
-    UartSendTaskHandle = osThreadCreate(osThread(UartSendTask), NULL);
+  /* definition and creation of UartSendTask */
+  osThreadDef(UartSendTask, StartUartSendTask, osPriorityNormal, 0, 128);
+  UartSendTaskHandle = osThreadCreate(osThread(UartSendTask), NULL);
 
-    /* definition and creation of KeyTask */
-    osThreadDef(KeyTask, Key_Task, osPriorityAboveNormal, 0, 128);
-    KeyTaskHandle = osThreadCreate(osThread(KeyTask), NULL);
+  /* definition and creation of KeyTask */
+  osThreadDef(KeyTask, Key_Task, osPriorityAboveNormal, 0, 128);
+  KeyTaskHandle = osThreadCreate(osThread(KeyTask), NULL);
 
-    /* definition and creation of UartReceiveTask */
-    osThreadDef(UartReceiveTask, StartUartReceiveTask, osPriorityHigh, 0, 128);
-    UartReceiveTaskHandle = osThreadCreate(osThread(UartReceiveTask), NULL);
+  /* definition and creation of UartReceiveTask */
+  osThreadDef(UartReceiveTask, StartUartReceiveTask, osPriorityHigh, 0, 128);
+  UartReceiveTaskHandle = osThreadCreate(osThread(UartReceiveTask), NULL);
 
-    /* definition and creation of GetADC */
-    osThreadDef(GetADC, StartGetADC, osPriorityRealtime , 0, 128);
-    GetADCHandle = osThreadCreate(osThread(GetADC), NULL);
+  /* definition and creation of GetADC */
+  osThreadDef(GetADC, StartGetADC, osPriorityNormal, 0, 128);
+  GetADCHandle = osThreadCreate(osThread(GetADC), NULL);
 
-    /* definition and creation of PowerControl */
-    osThreadDef(PowerControl, StartPowerControl, osPriorityHigh, 0, 128);
-    PowerControlHandle = osThreadCreate(osThread(PowerControl), NULL);
+  /* definition and creation of PowerControl */
+  osThreadDef(PowerControl, StartPowerControl, osPriorityHigh, 0, 128);
+  PowerControlHandle = osThreadCreate(osThread(PowerControl), NULL);
 
-    /* USER CODE BEGIN RTOS_THREADS */
+  /* USER CODE BEGIN RTOS_THREADS */
     /* add threads, ... */
-    /* USER CODE END RTOS_THREADS */
+  /* USER CODE END RTOS_THREADS */
 
 }
 
@@ -163,7 +163,7 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartLEDTask */
 void StartLEDTask(void const * argument)
 {
-    /* USER CODE BEGIN StartLEDTask */
+  /* USER CODE BEGIN StartLEDTask */
     /* Infinite loop */
     for(;;)
     {
@@ -171,7 +171,7 @@ void StartLEDTask(void const * argument)
 
         osDelay(1000);
     }
-    /* USER CODE END StartLEDTask */
+  /* USER CODE END StartLEDTask */
 }
 
 /* USER CODE BEGIN Header_StartUartSendTask */
@@ -183,7 +183,7 @@ void StartLEDTask(void const * argument)
 /* USER CODE END Header_StartUartSendTask */
 void StartUartSendTask(void const * argument)
 {
-    /* USER CODE BEGIN StartUartSendTask */
+  /* USER CODE BEGIN StartUartSendTask */
     //uint8_t AT_get_time[50] = "AT+UPDATETIME=1,time.windows.com,10,\"E8\",0\r\n";
 
 
@@ -206,7 +206,7 @@ void StartUartSendTask(void const * argument)
         osDelay(1000);//等待1秒
 //    osMessagePut(CmdQueueHandle, 2, 0);//发送消息2
     }
-    /* USER CODE END StartUartSendTask */
+  /* USER CODE END StartUartSendTask */
 }
 
 /* USER CODE BEGIN Header_Key_Task */
@@ -218,7 +218,7 @@ void StartUartSendTask(void const * argument)
 /* USER CODE END Header_Key_Task */
 void Key_Task(void const * argument)
 {
-    /* USER CODE BEGIN Key_Task */
+  /* USER CODE BEGIN Key_Task */
     /* Infinite loop */
     for(;;)
     {
@@ -236,7 +236,7 @@ void Key_Task(void const * argument)
         }
         osDelay(1000);
     }
-    /* USER CODE END Key_Task */
+  /* USER CODE END Key_Task */
 }
 
 /* USER CODE BEGIN Header_StartUartReceiveTask */
@@ -252,7 +252,7 @@ void Key_Task(void const * argument)
 /* USER CODE END Header_StartUartReceiveTask */
 void StartUartReceiveTask(void const * argument)
 {
-    /* USER CODE BEGIN StartUartReceiveTask */
+  /* USER CODE BEGIN StartUartReceiveTask */
     //osEvent theEvent;//声明一个事件
 
 
@@ -306,7 +306,7 @@ void StartUartReceiveTask(void const * argument)
 //          printf("Receive message %d\n",theEvent.value.v);
 //      }
     }
-    /* USER CODE END StartUartReceiveTask */
+  /* USER CODE END StartUartReceiveTask */
 }
 
 /* USER CODE BEGIN Header_StartGetADC */
@@ -318,11 +318,9 @@ void StartUartReceiveTask(void const * argument)
 
 
 /* USER CODE END Header_StartGetADC */
-
-
 void StartGetADC(void const * argument)
 {
-    /* USER CODE BEGIN StartGetADC */
+  /* USER CODE BEGIN StartGetADC */
 
     HAL_ADC_Start_DMA(&hadc1,ADC1_Buf,ADC1_CHANNEL_CNT * ADC1_Filter_Num);  //DMA 数组大小为ADC1的通道数乘以ADC1需要滤波的数据量
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
@@ -339,7 +337,7 @@ void StartGetADC(void const * argument)
     {
 //       printf("ADC1 CH0 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In0_Buf,ADC1_CHANNEL_IN0));   //单片机内部ADC ch0
 //       printf("ADC1 CH1 vol = %.3f  \n",Get_ADC_Voltage(ADC1_In1_Buf,ADC1_CHANNEL_IN1));   //单片机内部ADC ch1
-<<<<<<< HEAD
+
 	
 //			
 			
@@ -364,10 +362,9 @@ void StartGetADC(void const * argument)
 			
 			
 		//	printf("ADS1115 VDD state %d",HAL_I2C_IsDeviceReady (&hi2c1,ADS1115_ADDR_VDD.ADDRESS>>2, 10,10));
-			ADS1115_ScanChannel(&ADS1115_ADDR_VDD,ADS1115_Differ_23);
-      ADS1115_GetVoltage(&ADS1115_ADDR_VDD);
+	//		ADS1115_ScanChannel(&ADS1115_ADDR_VDD,ADS1115_Differ_23);
+      ADS1115_GetVoltage(&ADS1115_ADDR_VDD,ADS1115_Differ_23);
 		//ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
-=======
 
       ADS1115_GetVoltage(&ADS1115_ADDR_GND,ADS1115_Differ_01);
 			//ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
@@ -377,7 +374,7 @@ void StartGetADC(void const * argument)
 			
       ADS1115_GetVoltage(&ADS1115_ADDR_VDD,ADS1115_ADDR_VDD.CHANNEL);
 			ADS1115_RefreshAllChannel(&ADS1115_ADDR_VDD);
->>>>>>> 630a7fbfb4897c9b657295480a686eca93bcf0c8
+
 	    printf("ADS1115 VDD CH %d vol = %.3f  \n",ADS1115_ADDR_VDD.CHANNEL,ADS1115_ADDR_VDD.ADS1115_Vol[ADS1115_ADDR_VDD.CHANNEL]);
 			
 			
@@ -386,12 +383,12 @@ void StartGetADC(void const * argument)
 				
 				
 			ADS1115_ScanChannel(&ADS1115_ADDR_GND,ADS1115_Differ_23);
-      ADS1115_GetVoltage(&ADS1115_ADDR_GND);
+      ADS1115_GetVoltage(&ADS1115_ADDR_GND,ADS1115_Differ_23);
 		//	ADS1115_RefreshAllChannel(&ADS1115_ADDR_GND);
 			printf("ADS1115 GND CH %d vol = %.3f  \n",ADS1115_ADDR_GND.CHANNEL,ADS1115_ADDR_GND.ADS1115_Vol[ADS1115_ADDR_GND.CHANNEL]);
 		osDelay(50);
     }
-    /* USER CODE END StartGetADC */
+  /* USER CODE END StartGetADC */
 }
 
 /* USER CODE BEGIN Header_StartPowerControl */
@@ -403,7 +400,7 @@ void StartGetADC(void const * argument)
 /* USER CODE END Header_StartPowerControl */
 void StartPowerControl(void const * argument)
 {
-    /* USER CODE BEGIN StartPowerControl */
+  /* USER CODE BEGIN StartPowerControl */
     double CONSTANT_Vol_Set = 15000,CONSTANT_Cur_Set = 2000;    //稳压模式22000mV  恒流模式2000mA
 
     Pid_Init();
@@ -444,7 +441,7 @@ void StartPowerControl(void const * argument)
 
         osDelay(1000);     //pid控制间隔时间 单位为ms    调试时时间间隔可以调长
     }
-    /* USER CODE END StartPowerControl */
+  /* USER CODE END StartPowerControl */
 }
 
 /* Private application code --------------------------------------------------*/
@@ -452,4 +449,3 @@ void StartPowerControl(void const * argument)
 
 /* USER CODE END Application */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

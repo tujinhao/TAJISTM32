@@ -34,12 +34,12 @@ stm32f205vetx\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.h
 stm32f205vetx\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.h
 stm32f205vetx\main.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
 stm32f205vetx\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-stm32f205vetx\main.o: ..\LOG\log.h
+stm32f205vetx\main.o: ../LOG/log.h
 stm32f205vetx\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 stm32f205vetx\main.o: ../Core/Inc/stm32f2xx_it.h
 stm32f205vetx\main.o: ../Core/Inc/main.h
-stm32f205vetx\main.o: ..\CONTROL\Digitalpower\power.h
-stm32f205vetx\main.o: ..\PID\pid.h
+stm32f205vetx\main.o: ../CONTROL/Digitalpower/power.h
+stm32f205vetx\main.o: ../PID/pid.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 stm32f205vetx\main.o: ../Core/Inc/FreeRTOSConfig.h
@@ -55,7 +55,7 @@ stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f205vetx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 stm32f205vetx\main.o: ../Core/Inc/adc.h
-stm32f205vetx\main.o: ..\Sort\sort.h
+stm32f205vetx\main.o: ../Sort/sort.h
 stm32f205vetx\main.o: ../Core/Inc/dma.h
 stm32f205vetx\main.o: ../Core/Inc/i2c.h
 stm32f205vetx\main.o: ../Core/Inc/tim.h
